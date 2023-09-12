@@ -12216,6 +12216,7 @@ GameObject:
   - component: {fileID: 1517405842}
   - component: {fileID: 1517405841}
   - component: {fileID: 1517405840}
+  - component: {fileID: 1517405844}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -12264,8 +12265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8acc3bb32638f946a7b25f2ab521a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMovementSpeed: 1
-  maxSteeringRotation: 80
 --- !u!114 &1517405841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12304,6 +12303,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a50085c9bbc7234e89db09c408bf7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1517405844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517405837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce99493bcb50f540bc8afc6832563c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMovementSpeed: 4
+  maxSteeringRotation: 80
+  throtle: 0.005
+  rotationSensitivity: 0.5
+  drag: 0.004
+  breakingForce: 0.007
 --- !u!850595691 &1790657599
 LightingSettings:
   m_ObjectHideFlags: 0
