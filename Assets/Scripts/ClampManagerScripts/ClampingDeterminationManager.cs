@@ -8,22 +8,21 @@ namespace Assets.Scripts.ClampManagerScripts
         //Can be made so object can see if it is on main track or dirt or something else so speed can be adjusted
         //Rays can be set to recognize track so in future if width of track changes we don't have to worry about it
         [SerializeField]
-        float rayX = 0.35f;
+        float rayX = 0.2f;
         [SerializeField]
-        float rayY = 0.03f;
-        public bool PlayerMovementNeedsToBeClamped()
+        float frontRayZ = 0.005f;
+        [SerializeField]
+        float backRayZ = 1.0f;
+        public bool PlayerMovementNeedsToBeClamped(ref RaycastHit hit)
         {
-            RaycastHit hit;
-            Vector3 rightRayPosition = new Vector3
-            {
-                x = this.transform.localPosition.x + rayX,
-                y = this.transform.localPosition.y + rayY,
-                z = transform.localPosition.z,
-            };
-            Vector3 leftRayPosition = rightRayPosition;
-            leftRayPosition.x -= 0.7f;
+            Vector3 rightRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * rayX;
+            Vector3 leftRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * -rayX;
+            Vector3 rightBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * rayX;
+            Vector3 leftBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * -rayX;
             if (Physics.Raycast(rightRayPosition, -this.transform.up, out hit, 2f)
-                && Physics.Raycast(leftRayPosition, -this.transform.up, out hit, 2f))
+                && Physics.Raycast(leftRayPosition, -this.transform.up, out hit, 2f)
+                && Physics.Raycast(rightBackRayPosition, -this.transform.up, out hit, 2f)
+                && Physics.Raycast(leftBackRayPosition, -this.transform.up, out hit, 2f))
             {
                 return false;
             }

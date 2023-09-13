@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.MovementManager;
 using Assets.Scripts.SpeedManager;
+using Assets.Scripts.TransferingInputsToMovementManager;
 using System.Collections;
 using UnityEngine;
 
@@ -8,18 +9,17 @@ namespace Assets.Scripts.InputManager
     public class InputManager : MonoBehaviour, IInputManager
     {
         IObjectMover _movePlayerComponent;
-        ISpeedManager _speedManager;
+        ITransferInputToMovement _inputTransferComponent;
         private void Awake()
         {
             _movePlayerComponent = this.GetComponent<ObjectMover>();
-            _speedManager = this.GetComponent<SpeedManager.SpeedManager>();
+            _inputTransferComponent = this.GetComponent<TransferInputToMovement>();
         }
         public void ManageInputs()
         {
             GetKeys();
             SetDirection();
         }
-
         private void SetDirection()
         {
             Vector3 forwardVector = this.transform.forward;
@@ -35,26 +35,25 @@ namespace Assets.Scripts.InputManager
                 rotationVector = new Vector3(0, 0, 0);
                 sideVector = new Vector3(0, 0, 0);
             }
-            _movePlayerComponent.Move(forwardVector, sideVector, rotationVector);
+            _inputTransferComponent.TransferInputsToMovementData(forwardVector, sideVector, rotationVector);
         }
-
         public void GetKeys()
         {
             if (Input.GetKey(KeyCode.W))
             {
-                _speedManager.ManageForwardMovement(ref _movePlayerComponent.GetSpeed(), ref _movePlayerComponent.GetSteeringAngle(), 0, _movePlayerComponent.GetMaxMovementSpeed(), _movePlayerComponent.GetMaxSteeringAngle(), 1);
+                _inputTransferComponent.TransferInputsToMovementData(1, false);
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                _speedManager.ManageForwardMovement(ref _movePlayerComponent.GetSpeed(), ref _movePlayerComponent.GetSteeringAngle(),- _movePlayerComponent.GetMaxMovementSpeed(), 0, _movePlayerComponent.GetMaxSteeringAngle(), -1);
+                _inputTransferComponent.TransferInputsToMovementData(-1, false);
             }
             else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
-                _speedManager.IncrementSteerinAngle(ref _movePlayerComponent.GetSteeringAngle(), _movePlayerComponent.GetMaxSteeringAngle());
+                _inputTransferComponent.TransferInputsToMovementData(0, true);
             }
             else
             {
-                _speedManager.ApplyDrag(ref _movePlayerComponent.GetSpeed(), ref _movePlayerComponent.GetSteeringAngle());
+                _inputTransferComponent.TransferInputsToMovementData(0, false);
             }
         }
     }

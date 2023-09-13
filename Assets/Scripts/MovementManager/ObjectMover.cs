@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.ClampManagerScripts;
 using Assets.Scripts.SpeedManager;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.MovementManager
@@ -11,27 +12,17 @@ namespace Assets.Scripts.MovementManager
         float maxMovementSpeed = 4f;
         [SerializeField]
         float maxSteeringRotation = 80f;
-        IClampingDeterminationManager _clampManager;
-        ISpeedManager _speedManager;
         float _sideSpeed = 0;
         float _speed = 0;
         float _steeringAngle = 0;
-        private void Awake()
-        {
-            _clampManager = this.GetComponent<ClampingDeterminationManager>();
-            _speedManager = this.GetComponent<SpeedManager.SpeedManager>();
-        }
         public void Move(Vector3 frontMovement, Vector3 sideMovement, Vector3 rotationMovement)
         {
             frontMovement *= Time.deltaTime * _speed;
             sideMovement *=  Time.deltaTime * _sideSpeed;
             rotationMovement *= Time.deltaTime * _steeringAngle;
-            if (!_clampManager.PlayerMovementNeedsToBeClamped())
-            {
-                this.transform.localPosition += frontMovement;
-                this.transform.localPosition += sideMovement;
-                this.transform.Rotate(rotationMovement);
-            }
+            this.transform.localPosition += frontMovement;
+            this.transform.localPosition += sideMovement;
+            this.transform.Rotate(rotationMovement);
         }
         public ref float GetSpeed()
         {

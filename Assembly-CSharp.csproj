@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\InputManager\InputManager.cs" />
+    <Compile Include="Assets\Scripts\TransferingInputsToMovementManager\TransferInputToMovement.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\ISpeedManager.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\SpeedManager.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampPlayerMovementManager.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampPlayerMovementManager.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampingDeterminationManager.cs" />
     <Compile Include="Assets\Scripts\MovementManager\IObjectMover.cs" />
+    <Compile Include="Assets\Scripts\TransferingInputsToMovementManager\ITransferInputToMovement.cs" />
     <Compile Include="Assets\Scripts\MovementManager\ObjectMover.cs" />
     <Compile Include="Assets\Scripts\CarMovement.cs" />
   </ItemGroup>
