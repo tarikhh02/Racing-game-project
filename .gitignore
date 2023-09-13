@@ -4,7 +4,8 @@
 Temp/
 Obj/
 UnityGenerated/
-Library/
+[Ll]ibrary/
+[Ll]ogs/
 Assets/AssetStoreTools*
 
 # ===================================== #
