@@ -7,6 +7,10 @@ namespace Assets.Scripts.MovementManager
 {
     public class ObjectMover : MonoBehaviour, IObjectMover
     {
+        [SerializeField]
+        float maxMovementSpeed = 4f;
+        [SerializeField]
+        float maxSteeringRotation = 80f;
         IClampingDeterminationManager _clampManager;
         ISpeedManager _speedManager;
         float _sideSpeed = 0;
@@ -16,11 +20,6 @@ namespace Assets.Scripts.MovementManager
         {
             _clampManager = this.GetComponent<ClampingDeterminationManager>();
             _speedManager = this.GetComponent<SpeedManager.SpeedManager>();
-        }
-        private void Update()
-        {
-            _speedManager.ManageSpeed(ref _speed, ref _steeringAngle);
-            _sideSpeed = _speed / 4;
         }
         public void Move(Vector3 frontMovement, Vector3 sideMovement, Vector3 rotationMovement)
         {
@@ -34,9 +33,25 @@ namespace Assets.Scripts.MovementManager
                 this.transform.Rotate(rotationMovement);
             }
         }
-        public float GetSpeed()
+        public ref float GetSpeed()
         {
-            return _speed;
+            return ref _speed;
+        }
+        public ref float GetSideSpeed()
+        {
+            return ref _sideSpeed;
+        }
+        public ref float GetSteeringAngle()
+        {
+            return ref _steeringAngle;
+        }
+        public ref float GetMaxMovementSpeed()
+        {
+            return ref maxMovementSpeed;
+        }
+        public ref float GetMaxSteeringAngle()
+        {
+            return ref maxSteeringRotation;
         }
     }
 }

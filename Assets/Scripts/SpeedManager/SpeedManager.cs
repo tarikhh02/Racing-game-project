@@ -7,10 +7,6 @@ namespace Assets.Scripts.SpeedManager
     public class SpeedManager : MonoBehaviour, ISpeedManager
     {
         [SerializeField]
-        float maxMovementSpeed = 4f;
-        [SerializeField]
-        float maxSteeringRotation = 80f;
-        [SerializeField]
         float throtle = 0.005f;
         [SerializeField]
         float rotationSensitivity = 0.5f;
@@ -18,58 +14,49 @@ namespace Assets.Scripts.SpeedManager
         float drag = 0.004f;
         [SerializeField]
         float breakingForce = 0.007f;
-        public void ManageSpeed(ref float speed, ref float steeringAngle)
+        public void ManageForwardMovement(ref float speed, ref float steeringAngle, float minMovingForwardConstraint, float maxMovingForwardConstraint, float maxSteeringRotation, int forwardDirection)
         {
-            if (Input.GetKey(KeyCode.W))
+            if (speed >= minMovingForwardConstraint && speed <= maxMovingForwardConstraint)
             {
-                if (speed >= 0 && speed < maxMovementSpeed)
-                {
-                    speed += throtle;
-                    if (steeringAngle < maxSteeringRotation)
-                        steeringAngle += rotationSensitivity;
-                }
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                if (speed <= 0 && speed > -maxMovementSpeed)
-                {
-                    speed -= throtle;
-                    if (steeringAngle < maxSteeringRotation)
-                        steeringAngle += rotationSensitivity;
-                } 
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                if (steeringAngle < maxSteeringRotation)
-                    steeringAngle += rotationSensitivity / 2;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                if (steeringAngle < maxSteeringRotation)
-                    steeringAngle += rotationSensitivity / 2;
-            }
-            else if (Input.GetKey(KeyCode.Space))
-            {
-                if (speed > 0)
-                    speed -= breakingForce + drag;
-                else
-                    speed += breakingForce + drag;
-                if (steeringAngle > 0)
-                    steeringAngle -= rotationSensitivity;
+                MoveForward(ref speed, ref steeringAngle, maxSteeringRotation, forwardDirection);
             }
             else
             {
-                if (steeringAngle > 0)
-                    steeringAngle -= rotationSensitivity;
-                else
-                    steeringAngle = 0;
-                if (speed > 0)
-                    speed -= drag;
-                else if (speed < -0.5f)
-                    speed += drag;
-                else
-                    speed = 0;
+                Break(ref speed, ref steeringAngle, forwardDirection);
             }
-        } 
+        }
+
+        public void MoveForward(ref float speed, ref float steeringAngle, float maxSteeringRotation, int forwardDirection)
+        {
+            speed += throtle * forwardDirection;
+            if (steeringAngle < maxSteeringRotation)
+                steeringAngle += rotationSensitivity;
+        }
+
+        public void Break(ref float speed, ref float steeringAngle, int forwardDirection)
+        {
+            speed += (breakingForce + drag) * forwardDirection;
+            if (steeringAngle > 0)
+                steeringAngle -= rotationSensitivity;
+        }
+
+        public void IncrementSteerinAngle(ref float steeringAngle, float maxSteeringRotation)
+        {
+            if (steeringAngle < maxSteeringRotation)
+                steeringAngle += rotationSensitivity / 2;
+        }
+        public  void ApplyDrag(ref float speed, ref float steeringAngle)
+        {
+            if (steeringAngle > 0)
+                steeringAngle -= rotationSensitivity / 2;
+            else
+                steeringAngle = 0;
+            if (speed > 0)
+                speed -= drag;
+            else if (speed < -0.1f)
+                speed += drag;
+            else
+                speed = 0;
+        }
     }
 }
