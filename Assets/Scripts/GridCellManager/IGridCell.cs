@@ -10,9 +10,9 @@ namespace Assets.Scripts.GridCellManager
         public int GetX();
         public int GetY();
         public int GetCost();
-        public Quaternion GetRotationDirection();
+        public Vector3 GetDirection();
         public void SetCost(int cost);
-        public void SetRotationDirection(Quaternion rotationDirection);
+        public void SetDirection(Vector3 direction);
 
     }
 }

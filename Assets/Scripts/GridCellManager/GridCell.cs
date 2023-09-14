@@ -9,14 +9,14 @@ namespace Assets.Scripts.GridCellManager
 {
     public class GridCell : MonoBehaviour, IGridCell
     {
-        int _x;
-        int _y;
-        int _cost;
-        Quaternion _rotationDirection;
-        public void SetUpCell(Transform parent, int i, int j)
+        public int _x;
+        public int _y;
+        public int _cost;
+        Vector3 _direction;
+        public void SetUpCell(Transform parent, int y, int x)
         {
-            _x = j;
-            _y = i;
+            _x = x;
+            _y = y;
             this.transform.SetParent(parent);
         }
         public int GetX()
@@ -31,17 +31,17 @@ namespace Assets.Scripts.GridCellManager
         {
             return _cost;
         }
-        public Quaternion GetRotationDirection()
+        public Vector3 GetDirection()
         {
-            return _rotationDirection;
+            return _direction;
         }
         public void SetCost(int cost)
         {
             _cost = cost;
         }
-        public void SetRotationDirection(Quaternion rotationDirection)
+        public void SetDirection(Vector3 direction)
         {
-            _rotationDirection = rotationDirection;
+            _direction = direction;
         }
     }
 }
