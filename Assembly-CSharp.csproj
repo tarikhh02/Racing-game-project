@@ -61,14 +61,24 @@
     <Compile Include="Assets\Scripts\InputManager\InputManager.cs" />
     <Compile Include="Assets\Scripts\TransferingInputsToMovementManager\TransferInputToMovement.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\ISpeedManager.cs" />
+    <Compile Include="Assets\Scripts\GridCellManager\IGridCell.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\SpeedManager.cs" />
+    <Compile Include="Assets\Scripts\GridCellManager\CollisionHandler.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampPlayerMovementManager.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampingDeterminationManager.cs" />
+    <Compile Include="Assets\Scripts\PathFindingManager\IPathFinder.cs" />
+    <Compile Include="Assets\Scripts\PathFindingManager\PathFinder.cs" />
+    <Compile Include="Assets\Scripts\GridCellManager\ICollisionHandler.cs" />
+    <Compile Include="Assets\Scripts\PathFindingManager\ICellCostSetter.cs" />
     <Compile Include="Assets\Scripts\InputManager\IInputManager.cs" />
+    <Compile Include="Assets\Scripts\GridCellManager\GridCell.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampPlayerMovementManager.cs" />
+    <Compile Include="Assets\Scripts\PathFindingManager\CellCostSetter.cs" />
+    <Compile Include="Assets\Scripts\GridInitializer\GridInitialization.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampingDeterminationManager.cs" />
     <Compile Include="Assets\Scripts\MovementManager\IObjectMover.cs" />
     <Compile Include="Assets\Scripts\TransferingInputsToMovementManager\ITransferInputToMovement.cs" />
+    <Compile Include="Assets\Scripts\GridInitializer\IGridInitialization.cs" />
     <Compile Include="Assets\Scripts\MovementManager\ObjectMover.cs" />
     <Compile Include="Assets\Scripts\CarMovement.cs" />
   </ItemGroup>
