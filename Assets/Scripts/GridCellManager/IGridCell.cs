@@ -9,10 +9,13 @@ namespace Assets.Scripts.GridCellManager
         public void SetUpCell(Transform parent, int i, int j);
         public int GetX();
         public int GetY();
-        public int GetCost();
+        public bool GetChecked();
         public Vector3 GetDirection();
         public void SetCost(int cost);
+        public int GetCost();
         public void SetDirection(Vector3 direction);
+        public GameObject GetGameObject();
+        public void SetCol();//////////////////////////////////////////////////////
 
     }
 }

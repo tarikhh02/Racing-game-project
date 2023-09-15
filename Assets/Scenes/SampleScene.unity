@@ -12157,8 +12157,9 @@ GameObject:
   m_Component:
   - component: {fileID: 622523473}
   - component: {fileID: 622523474}
-  - component: {fileID: 622523476}
   - component: {fileID: 622523475}
+  - component: {fileID: 622523476}
+  - component: {fileID: 622523477}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -12217,7 +12218,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 622523472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 269c27d75edaf9743a2ce45470d391fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 56be25158c466f346ae5fff7cddd4813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &622523477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622523472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6f84bf149fb9646b9144b4ca0c37cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &705507993
@@ -12429,8 +12442,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450458651}
-  m_LocalRotation: {x: 0.15066476, y: -0, z: -0, w: 0.98858494}
-  m_LocalPosition: {x: -0.56, y: 1.91, z: -3.46}
+  m_LocalRotation: {x: 0.34920877, y: -0.20717563, z: 0.07962034, w: 0.9103802}
+  m_LocalPosition: {x: -21.687107, y: 8.017078, z: -9.302232}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,25 +1,32 @@
 ﻿using Assets.Scripts.GridInitializer;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.GridCellManager;
 
 namespace Assets.Scripts.PathFindingManager
 {
     public class PathFinder : MonoBehaviour, IPathFinder
     {
         IGridInitialization _gridInitComponent;
-        ICellCostSetter _cellCostSetter;
+        ISetCostFromEndToRest _costSetterComponent;
+        ICellDirectionSetter _cellDirectionSettingComponent;
         Tuple<int, int> _startIndex;
         Tuple<int, int> _endIndex;
-        private void Start()
+        private void Awake()
         {
-            _cellCostSetter = GetComponent<CellCostSetter>();
-            _gridInitComponent = GetComponent<GridInitialization>();
+            _costSetterComponent = this.GetComponent<SetCostFromEndToRest>();
+            _gridInitComponent = this.GetComponent<GridInitialization>();
+            _cellDirectionSettingComponent = this.GetComponent<CellDirectionSetter>();
             Invoke("FindPath",1f);
         }
         public void FindPath()
         {
-            _cellCostSetter.SetCellCosts();
+            ref List<List<IGridCell>> grid = ref _gridInitComponent.GetGrid();
+            _costSetterComponent.SetCostFromEnd(ref grid, _endIndex.Item1, _endIndex.Item2, 1);
+            //Direction setting not finished
+            //_cellDirectionSettingComponent.SetEachCellDirection(ref grid);
         }
         public Tuple<int, int> GetStartIndex()
         {
