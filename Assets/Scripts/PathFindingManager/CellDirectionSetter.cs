@@ -19,9 +19,13 @@ namespace Assets.Scripts.PathFindingManager
                     CheckXAxis(ref gridWithCellCostsSet, x, y);
                     CheckYAxis(ref gridWithCellCostsSet, x, y);
                     IGridCell cellWithMinCost = _costsToChoose.Find(s => s.GetCost() == _costsToChoose.Min(s => s.GetCost()));
-                    //gridWithCellCostsSet[y][x].SetDirection(Vector3.Normalize(this.gameObject.transform.position - cellWithMinCost.GetGameObject().transform.position));
-                    //gridWithCellCostsSet[y][x].SetDirection(Vector3.Angle(this.gameObject.transform.position - cellWithMinCost.GetGameObject().transform.position));
-                    //Debug.DrawRay(this.transform.position, gridWithCellCostsSet[y][x].GetDirection() * 2f, Color.black, 10f);
+                    Vector3 dir = gridWithCellCostsSet[y][x].GetGameObject().transform.position - cellWithMinCost.GetGameObject().transform.position;
+                    gridWithCellCostsSet[y][x].SetDirection(Vector3.Normalize(dir));
+                    Debug.DrawRay(new Vector3() { 
+                        x = gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.x * x + 0.5f + this.transform.position.x,
+                        y = this.transform.position.y,
+                        z = gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.x * y + 0.5f + this.transform.position.z
+                    }, gridWithCellCostsSet[y][x].GetDirection() * gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.x, Color.blue, 100f);
                 }
             }
         }

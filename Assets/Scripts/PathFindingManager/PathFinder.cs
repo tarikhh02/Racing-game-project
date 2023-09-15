@@ -25,8 +25,8 @@ namespace Assets.Scripts.PathFindingManager
         {
             ref List<List<IGridCell>> grid = ref _gridInitComponent.GetGrid();
             _costSetterComponent.SetCostFromEnd(ref grid, _endIndex.Item1, _endIndex.Item2, 1);
-            //Direction setting not finished
-            //_cellDirectionSettingComponent.SetEachCellDirection(ref grid);
+            //Direction setting finished, rays are not drawing properly, has to be fixed
+            _cellDirectionSettingComponent.SetEachCellDirection(ref grid);
         }
         public Tuple<int, int> GetStartIndex()
         {
