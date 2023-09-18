@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.GridCellManager;
+using Racing_game_project.CellMarkerManager;
+using Race_game_project.CellUnwalkableMaker;
 
 namespace Assets.Scripts.PathFindingManager
 {
@@ -13,6 +15,7 @@ namespace Assets.Scripts.PathFindingManager
         IGridInitialization _gridInitComponent;
         ISetCostFromEndToRest _costSetterComponent;
         ICellDirectionSetter _cellDirectionSettingComponent;
+        ICellUnwalkableMarker _cellMarkerComponent;
         Tuple<int, int> _startIndex = null;
         Tuple<int, int> _endIndex = null;
         private void OnEnable()
@@ -20,16 +23,17 @@ namespace Assets.Scripts.PathFindingManager
             _gridInitComponent = this.GetComponent<GridInitialization>();
             _costSetterComponent = this.GetComponent<SetCostFromEndToRest>();
             _cellDirectionSettingComponent = this.GetComponent<CellDirectionSetter>();
+            _cellMarkerComponent = this.GetComponent<CellUnwalkableMarker>();
             FindPath();
-            this.GetComponent<GridInitialization>().enabled = false;
             this.enabled = false;
         }
         public void FindPath()
         {
-            ref List<List<IGridCell>> grid = ref _gridInitComponent.GetGrid();
-            _costSetterComponent.SetCostFromEnd(ref grid, _endIndex.Item1, _endIndex.Item2, 0);
+            _gridInitComponent.SetUpGrid();
+            _cellMarkerComponent.MarkCellAsUnwalkabe();
+            _costSetterComponent.SetCostFromEnd(ref _gridInitComponent.GetGrid(), _endIndex.Item1, _endIndex.Item2, 0);
             //Direction setting finished, rays are not drawing properly, has to be fixed
-            _cellDirectionSettingComponent.SetEachCellDirection(ref grid);
+            _cellDirectionSettingComponent.SetEachCellDirection(ref _gridInitComponent.GetGrid());
         }
         public Tuple<int, int> GetStartIndex()
         {

@@ -71,8 +71,10 @@
     <Compile Include="Assets\Scripts\PathFindingManager\PathFinder.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\CellDirectionSetter.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\ICollisionHandler.cs" />
+    <Compile Include="Assets\Scripts\PathFindingManager\CellUnwalkableMarker.cs" />
     <Compile Include="Assets\Scripts\InputManager\IInputManager.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\GridCell.cs" />
+    <Compile Include="Assets\Scripts\PathFindingManager\ICellUnwalkableMarker.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ISetCostFromEndToRest.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampPlayerMovementManager.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ICellDirectionSetter.cs" />
