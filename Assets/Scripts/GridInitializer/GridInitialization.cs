@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.GridCellManager;
+using Assets.Scripts.PathFindingManager;
 
-namespace Assets.Scripts.GridInitializer { 
+namespace Assets.Scripts.GridInitializer {
+    [ExecuteInEditMode]
     public class GridInitialization : MonoBehaviour, IGridInitialization
     {
         [SerializeField]
@@ -13,15 +15,29 @@ namespace Assets.Scripts.GridInitializer {
         int _gridWidth;
         [SerializeField]
         int _gridHeight;
+        [SerializeField]
+        GameObject endPoint;
+        [SerializeField]
+        GameObject startPoint;
         List<List<IGridCell>> _grid = new List<List<IGridCell>>();
+        ICollisionHandler _collisionHandler;
 
-        private void Awake()
+        private void OnEnable()
         {
             SetUpGrid();
         }
-
+        private void DestroyCells()
+        {
+            foreach (var cellRow in _grid)
+            {
+                foreach (var cell in cellRow)
+                    DestroyImmediate(cell.GetGameObject());
+            }
+            _grid.Clear();
+        }
         public void SetUpGrid()
         {
+            _collisionHandler = this.GetComponent<CollisionHandler>();
             for (int i = 0; i < _gridHeight; i++)
             {
                 _grid.Add(new List<IGridCell>());
@@ -34,10 +50,19 @@ namespace Assets.Scripts.GridInitializer {
                     cellObj.SetUpCell(this.transform, i, j);
                 }
             }
+            _collisionHandler.HandleTriggers(startPoint, endPoint);
         }
         public ref List<List<IGridCell>> GetGrid()
         {
             return ref _grid;
+        }
+        public GameObject GetStartPoint()
+        {
+            return startPoint;
+        }
+        public GameObject GetEndPoint()
+        {
+            return endPoint;
         }
     }
 }

@@ -7,35 +7,27 @@ using Assets.Scripts.PathFindingManager;
 
 namespace Assets.Scripts.GridCellManager
 {
-    public class CollisionHandler : MonoBehaviour
+    [ExecuteInEditMode]
+    public class CollisionHandler : MonoBehaviour, ICollisionHandler
     {
         IPathFinder _pathFindingComponent;
-        IGridCell _cell;
-        private void Awake()
+        public void HandleTriggers(GameObject startPoint, GameObject endPoint)
         {
-            _cell = this.GetComponent<GridCell>();
-        }
-        private void OnTriggerEnter(Collider other)
-        {
-            HandleTriggers(other);
-        }
-
-        private void HandleTriggers(Collider other)
-        {
-            if (other.gameObject.tag == "Start")
+            _pathFindingComponent = this.GetComponentInParent<PathFinder>();
+            Collider[] startColliders = Physics.OverlapBox(startPoint.transform.position, startPoint.transform.localScale / (2 * 10), Quaternion.identity);
+            Collider[] endColliders = Physics.OverlapBox(endPoint.transform.position, endPoint.transform.localScale / (2 * 10), Quaternion.identity);
+            foreach (var c in startColliders)
             {
-                _pathFindingComponent = this.GetComponentInParent<PathFinder>();
-                if (_pathFindingComponent.GetStartIndex() == null)
+                if (c.tag == "GridCell")
                 {
-                    _pathFindingComponent.SetStartIndex(_cell.GetX(), _cell.GetY());
+                    _pathFindingComponent.SetStartIndex(c.gameObject.GetComponent<GridCell>().GetX(), c.gameObject.GetComponent<GridCell>().GetY());
                 }
             }
-            else if (other.gameObject.tag == "End")
+            foreach (var c in endColliders)
             {
-                _pathFindingComponent = this.GetComponentInParent<PathFinder>();
-                if (_pathFindingComponent.GetEndIndex() == null)
+                if (c.tag == "GridCell")
                 {
-                    _pathFindingComponent.SetEndIndex(_cell.GetX(), _cell.GetY());
+                    _pathFindingComponent.SetEndIndex(c.gameObject.GetComponent<GridCell>().GetX(), c.gameObject.GetComponent<GridCell>().GetY());
                 }
             }
         }

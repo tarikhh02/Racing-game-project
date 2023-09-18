@@ -13,9 +13,9 @@ namespace Assets.Scripts.GridCellManager
         public Vector3 GetDirection();
         public void SetCost(int cost);
         public int GetCost();
+        public void SetCostIncrementValue(int costIncrementValue);
         public void SetDirection(Vector3 direction);
         public GameObject GetGameObject();
-        public void SetCol();//////////////////////////////////////////////////////
 
     }
 }

@@ -9,6 +9,7 @@ using System.Data;
 
 namespace Assets.Scripts.GridCellManager
 {
+    [ExecuteInEditMode]
     public class GridCell : MonoBehaviour, IGridCell
     {
         [SerializeField]
@@ -16,20 +17,12 @@ namespace Assets.Scripts.GridCellManager
         public int _x;
         public int _y;
         public int _cost;
+        int _costIncrementValue = 1;
         public Vector3 _direction;
         bool _isChecked = false;
-        public static float intcrementVal=0;///////////////////////////////////////////////////////////////////
-        public void SetCol()/////////////////////////////////////////////////////////////////////////////////
-        {
-            Invoke("InvokeSetCol", 0.5f + GridCell.intcrementVal);
-            GridCell.intcrementVal+=0.5f;
-        }
-        void InvokeSetCol()//////////////////////////////////////////////////////////////////////////////////
-        {
-            this.gameObject.GetComponent<MeshRenderer>().material = checkedCol;
-        }
         public void SetUpCell(Transform parent, int y, int x)
         {
+            this.gameObject.tag = "GridCell";
             _x = x;
             _y = y;
             this.transform.SetParent(parent);
@@ -53,11 +46,15 @@ namespace Assets.Scripts.GridCellManager
         public void SetCost(int cost)
         {
             _isChecked = true;
-            _cost = cost;
+            _cost = cost + _costIncrementValue;
         }
         public int GetCost()
         {
             return _cost;
+        }
+        public void SetCostIncrementValue(int costIncrementValue)
+        {
+            _costIncrementValue = costIncrementValue;
         }
         public void SetDirection(Vector3 direction)
         {

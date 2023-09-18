@@ -7,24 +7,27 @@ using Assets.Scripts.GridCellManager;
 
 namespace Assets.Scripts.PathFindingManager
 {
+    [ExecuteInEditMode]
     public class PathFinder : MonoBehaviour, IPathFinder
     {
         IGridInitialization _gridInitComponent;
         ISetCostFromEndToRest _costSetterComponent;
         ICellDirectionSetter _cellDirectionSettingComponent;
-        Tuple<int, int> _startIndex;
-        Tuple<int, int> _endIndex;
-        private void Awake()
+        Tuple<int, int> _startIndex = null;
+        Tuple<int, int> _endIndex = null;
+        private void OnEnable()
         {
-            _costSetterComponent = this.GetComponent<SetCostFromEndToRest>();
             _gridInitComponent = this.GetComponent<GridInitialization>();
+            _costSetterComponent = this.GetComponent<SetCostFromEndToRest>();
             _cellDirectionSettingComponent = this.GetComponent<CellDirectionSetter>();
-            Invoke("FindPath",1f);
+            FindPath();
+            this.GetComponent<GridInitialization>().enabled = false;
+            this.enabled = false;
         }
         public void FindPath()
         {
             ref List<List<IGridCell>> grid = ref _gridInitComponent.GetGrid();
-            _costSetterComponent.SetCostFromEnd(ref grid, _endIndex.Item1, _endIndex.Item2, 1);
+            _costSetterComponent.SetCostFromEnd(ref grid, _endIndex.Item1, _endIndex.Item2, 0);
             //Direction setting finished, rays are not drawing properly, has to be fixed
             _cellDirectionSettingComponent.SetEachCellDirection(ref grid);
         }
@@ -42,7 +45,7 @@ namespace Assets.Scripts.PathFindingManager
         }
         public void SetEndIndex(int x, int y)
         {
-            _endIndex = Tuple.Create(x, y);
+            _endIndex = Tuple.Create(x, y); 
         }
     }
 }

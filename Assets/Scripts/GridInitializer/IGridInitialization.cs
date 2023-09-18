@@ -10,5 +10,7 @@ namespace Assets.Scripts.GridInitializer
     {
         void SetUpGrid();
         public ref List<List<IGridCell>> GetGrid();
+        public GameObject GetStartPoint();
+        public GameObject GetEndPoint();
     }
 }
