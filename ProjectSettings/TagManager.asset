@@ -8,6 +8,7 @@ TagManager:
   - Start
   - End
   - GridCell
+  - Obsticle
   layers:
   - Default
   - TransparentFX

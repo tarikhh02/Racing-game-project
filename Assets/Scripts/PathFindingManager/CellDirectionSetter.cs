@@ -16,23 +16,17 @@ namespace Assets.Scripts.PathFindingManager
             {
                 for (int x = 0; x < gridWithCellCostsSet[y].Count; x++)
                 {
-                    int posOffsetX = 0, posOffsetY = 0;
                     _costsToChoose.Clear();
                     CheckXAxis(ref gridWithCellCostsSet, x, y);
                     CheckYAxis(ref gridWithCellCostsSet, x, y);
                     IGridCell cellWithMinCost = _costsToChoose.Find(s => s.GetCost() == _costsToChoose.Min(s => s.GetCost()));
                     Vector3 dir = cellWithMinCost.GetGameObject().transform.position - gridWithCellCostsSet[y][x].GetGameObject().transform.position;
                     gridWithCellCostsSet[y][x].SetDirection(Vector3.Normalize(dir));
-                    //Wrong ray location but not a big issue for now
-                    if (x == 0)
-                        posOffsetX = 0;
-                    else if(y == 0)
-                        posOffsetY = 0;
                     Debug.DrawRay(new Vector3() { 
-                        x = gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.x * (x + posOffsetX) + this.transform.position.x,
+                        x = this.transform.position.x + gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.x / 2 + gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.x * x,
                         y = this.transform.position.y,
-                        z = gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.z * (y + posOffsetY) + this.transform.position.z
-                    }, gridWithCellCostsSet[y][x].GetDirection() * gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.x, Color.blue, 20f);
+                        z = this.transform.position.z + gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.x / 2 + gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.z * y
+                    }, gridWithCellCostsSet[y][x].GetDirection() * gridWithCellCostsSet[y][x].GetGameObject().transform.localScale.x, Color.blue, 60f);
                 }
             }
         }

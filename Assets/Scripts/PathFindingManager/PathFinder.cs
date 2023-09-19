@@ -30,9 +30,8 @@ namespace Assets.Scripts.PathFindingManager
         public void FindPath()
         {
             _gridInitComponent.SetUpGrid();
-            _cellMarkerComponent.MarkCellAsUnwalkabe();
+            _cellMarkerComponent.MarkCellAsUnwalkabe(ref _gridInitComponent.GetGrid());
             _costSetterComponent.SetCostFromEnd(ref _gridInitComponent.GetGrid(), _endIndex.Item1, _endIndex.Item2, 0);
-            //Direction setting finished, rays are not drawing properly, has to be fixed
             _cellDirectionSettingComponent.SetEachCellDirection(ref _gridInitComponent.GetGrid());
         }
         public Tuple<int, int> GetStartIndex()

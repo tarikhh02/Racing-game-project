@@ -11,7 +11,6 @@ namespace Assets.Scripts.AIMoveManager
         RaycastHit hit;
         private void Update()
         {
-            Debug.DrawRay(transform.position, -transform.up * 1f, Color.red, 1f);
             if (!arrived && Physics.Raycast(this.transform.position, -this.transform.up, out hit, 0.5f))
             {
                 if (hit.collider.gameObject.tag == "GridCell")

@@ -3,27 +3,66 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Assets.Scripts.GridCellManager;
 using Race_game_project.CellUnwalkableMaker;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Racing_game_project.CellMarkerManager
 {
     [ExecuteInEditMode]
     public class CellUnwalkableMarker : MonoBehaviour, ICellUnwalkableMarker
     {
-        [SerializeField]
-        GameObject[] obsticles;
-        public void MarkCellAsUnwalkabe()
+        RaycastHit frontRightHit;
+        RaycastHit frontLeftHit;
+        RaycastHit backRightHit;
+        RaycastHit backLeftHit;
+        public void MarkCellAsUnwalkabe(ref List<List<IGridCell>> grid)
         {
-            foreach (var obsticle in obsticles)
+            for (int y = 0; y < grid.Count; y++)
             {
-                Collider[] colliders = Physics.OverlapBox(obsticle.transform.position, obsticle.transform.localScale / 2, obsticle.transform.rotation);
-                foreach (var collider in colliders)
+                for (int x = 0; x < grid[y].Count; x++)
                 {
-                    if (collider.gameObject.tag == "GridCell")
+                    Vector3 frontPositionVector = new Vector3
                     {
-                        IGridCell currentCell = collider.gameObject.GetComponent<GridCell>();
-                        if (!currentCell.GetChecked())
+                        x = this.transform.position.x + grid[y][x].GetGameObject().transform.localScale.x / 2 + grid[y][x].GetGameObject().transform.localScale.x * x + this.transform.forward.x * grid[y][x].GetGameObject().transform.localScale.x / 2,
+                        y = - grid[y][x].GetGameObject().transform.localScale.y - 0.001f,
+                        z = this.transform.position.z + grid[y][x].GetGameObject().transform.localScale.x / 2 + grid[y][x].GetGameObject().transform.localScale.x * y + this.transform.forward.z * grid[y][x].GetGameObject().transform.localScale.x / 2,
+                    };
+                    Vector3 backPositionVector = new Vector3
+                    {
+                        x = this.transform.position.x + grid[y][x].GetGameObject().transform.localScale.x / 2 + grid[y][x].GetGameObject().transform.localScale.x * x - this.transform.forward.x * grid[y][x].GetGameObject().transform.localScale.x / 2,
+                        y = - grid[y][x].GetGameObject().transform.localScale.y - 0.001f,
+                        z = this.transform.position.z + grid[y][x].GetGameObject().transform.localScale.x / 2 + grid[y][x].GetGameObject().transform.localScale.x * y - this.transform.forward.z * grid[y][x].GetGameObject().transform.localScale.x / 2,
+                    };
+                    List<Collider[]> colliderList = new List<Collider[]>()
+                    { 
+                        Physics.OverlapBox(frontPositionVector + this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
+                        .Where(c => c.gameObject.tag != "GridCell").ToArray(),
+                        Physics.OverlapBox(frontPositionVector - this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
+                        .Where(c => c.gameObject.tag != "GridCell").ToArray(),
+                        Physics.OverlapBox(backPositionVector + this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
+                        .Where(c => c.gameObject.tag != "GridCell").ToArray(),
+                        Physics.OverlapBox(backPositionVector - this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
+                        .Where(c => c.gameObject.tag != "GridCell").ToArray()
+                    };  
+                    foreach (Collider[] colliders in colliderList)
+                    {
+                        if(colliders.Length > 0)
                         {
-                            currentCell.SetCost(60000);
+                            foreach (Collider collider in colliders)
+                            {
+                                //implement obsticles, area of track with bigger increment value
+                                if(collider.gameObject.tag == "Obsticle")
+                                {
+                                    grid[y][x].SetCost(60000);
+                                }
+                                //.... We can add another case where for example tag could be dirt so it's less efficient
+                                //P.S. cost can't be set manually because algorithm only works by not taking into consideration block if it's checked which can be fixed,
+                                //but goal is to make program determine automatically if certain area is walkable or less efficient
+                            }
+                        }
+                        else
+                        {
+                            grid[y][x].SetCost(60000);
                         }
                     }
                 }

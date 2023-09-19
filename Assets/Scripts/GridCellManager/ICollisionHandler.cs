@@ -5,6 +5,6 @@ namespace Assets.Scripts.GridCellManager
 {
     public interface ICollisionHandler
     {
-        public void HandleTriggers(GameObject startPoint, GameObject endPoint);
+        public void HandleTriggersForStartAndEnd(GameObject startPoint, GameObject endPoint);
     }
 }

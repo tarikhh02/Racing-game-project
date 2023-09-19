@@ -12,8 +12,6 @@ namespace Assets.Scripts.GridCellManager
     [ExecuteInEditMode]
     public class GridCell : MonoBehaviour, IGridCell
     {
-        [SerializeField]
-        Material checkedCol;
         public int _x;
         public int _y;
         public int _cost;
@@ -25,7 +23,7 @@ namespace Assets.Scripts.GridCellManager
             this.gameObject.tag = "GridCell";
             _x = x;
             _y = y;
-            this.transform.SetParent(parent);
+            this.gameObject.transform.SetParent(parent);
         }
         public int GetX()
         {

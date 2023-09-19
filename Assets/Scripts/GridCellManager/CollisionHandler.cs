@@ -11,11 +11,11 @@ namespace Assets.Scripts.GridCellManager
     public class CollisionHandler : MonoBehaviour, ICollisionHandler
     {
         IPathFinder _pathFindingComponent;
-        public void HandleTriggers(GameObject startPoint, GameObject endPoint)
+        public void HandleTriggersForStartAndEnd(GameObject startPoint, GameObject endPoint)
         {
-            _pathFindingComponent = this.GetComponentInParent<PathFinder>();
-            Collider[] startColliders = Physics.OverlapBox(startPoint.transform.position, startPoint.transform.localScale / (2 * 10), Quaternion.identity);
-            Collider[] endColliders = Physics.OverlapBox(endPoint.transform.position, endPoint.transform.localScale / (2 * 10), Quaternion.identity);
+            _pathFindingComponent = this.gameObject.GetComponent<PathFinder>();
+            Collider[] startColliders = Physics.OverlapBox(startPoint.transform.position, new Vector3(0.001f, 0.3f, 0.001f));
+            Collider[] endColliders = Physics.OverlapBox(endPoint.transform.position, new Vector3(0.001f, 0.3f, 0.001f));
             foreach (var c in startColliders)
             {
                 if (c.tag == "GridCell")
