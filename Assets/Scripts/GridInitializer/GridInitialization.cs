@@ -19,8 +19,6 @@ namespace Assets.Scripts.GridInitializer {
         int _gridHeight;
         [SerializeField]
         GameObject endPoint;
-        [SerializeField]
-        GameObject startPoint;
         static List<List<IGridCell>> _grid = new List<List<IGridCell>>();
         ICollisionHandler _collisionHandler;
         public void SetUpGrid()
@@ -40,15 +38,11 @@ namespace Assets.Scripts.GridInitializer {
                     cellObj.SetUpCell(this.transform.parent, i, j);
                 }
             }
-            _collisionHandler.HandleTriggersForStartAndEnd(startPoint, endPoint);
+            _collisionHandler.HandleTriggersForStartAndEnd(endPoint);
         }
         public ref List<List<IGridCell>> GetGrid()
         {
             return ref _grid;
-        }
-        public GameObject GetStartPoint()
-        {
-            return startPoint;
         }
         public GameObject GetEndPoint()
         {

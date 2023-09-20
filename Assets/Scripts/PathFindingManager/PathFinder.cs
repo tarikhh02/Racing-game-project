@@ -16,7 +16,6 @@ namespace Assets.Scripts.PathFindingManager
         ISetCostFromEndToRest _costSetterComponent;
         ICellDirectionSetter _cellDirectionSettingComponent;
         ICellUnwalkableMarker _cellMarkerComponent;
-        Tuple<int, int> _startIndex = null;
         Tuple<int, int> _endIndex = null;
         private void OnEnable()
         {
@@ -32,19 +31,11 @@ namespace Assets.Scripts.PathFindingManager
             _gridInitComponent.SetUpGrid();
             _cellMarkerComponent.MarkCellAsUnwalkabe(ref _gridInitComponent.GetGrid());
             _costSetterComponent.SetCostFromEnd(ref _gridInitComponent.GetGrid(), _endIndex.Item1, _endIndex.Item2, 0);
-            _cellDirectionSettingComponent.SetEachCellDirection(ref _gridInitComponent.GetGrid());
-        }
-        public Tuple<int, int> GetStartIndex()
-        {
-            return _startIndex;
+            _cellDirectionSettingComponent.SetEachCellDirection(ref _gridInitComponent.GetGrid(), _gridInitComponent.GetEndPoint());
         }
         public Tuple<int, int> GetEndIndex()
         {
             return _endIndex;
-        }
-        public void SetStartIndex(int x, int y)
-        {
-            _startIndex = Tuple.Create(x, y);
         }
         public void SetEndIndex(int x, int y)
         {

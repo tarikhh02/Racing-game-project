@@ -10,7 +10,7 @@ namespace Assets.Scripts.PathFindingManager
     public class CellDirectionSetter : MonoBehaviour, ICellDirectionSetter
     {
         List<IGridCell> _costsToChoose = new List<IGridCell>();
-        public void SetEachCellDirection(ref List<List<IGridCell>> gridWithCellCostsSet)
+        public void SetEachCellDirection(ref List<List<IGridCell>> gridWithCellCostsSet, GameObject endPoint)
         {
             for (int y = 0; y < gridWithCellCostsSet.Count; y++) 
             {

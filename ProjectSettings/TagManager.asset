@@ -9,6 +9,7 @@ TagManager:
   - End
   - GridCell
   - Obsticle
+  - HalfTrack
   layers:
   - Default
   - TransparentFX
