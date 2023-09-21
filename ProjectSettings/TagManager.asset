@@ -10,6 +10,7 @@ TagManager:
   - GridCell
   - Obsticle
   - HalfTrack
+  - Unwalkable
   layers:
   - Default
   - TransparentFX

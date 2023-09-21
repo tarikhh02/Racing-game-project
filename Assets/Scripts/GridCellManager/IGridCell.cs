@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿using Race_game_project.AIPathFinderManager;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GridBrushBase;
 
@@ -16,6 +19,8 @@ namespace Assets.Scripts.GridCellManager
         public void SetCostIncrementValue(int costIncrementValue);
         public void SetDirection(Vector3 direction);
         public GameObject GetGameObject();
+        public List<KeyValuePair<IAIShortestPathFinder, Tuple<float, float>>> GetListOfCarsThatWillPass();
+        public void AddCarThatVillPass(IAIShortestPathFinder car, float speed, float distance);
 
     }
 }

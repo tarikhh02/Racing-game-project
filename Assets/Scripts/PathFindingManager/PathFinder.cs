@@ -1,9 +1,6 @@
 ﻿using Assets.Scripts.GridInitializer;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.GridCellManager;
 using Racing_game_project.CellMarkerManager;
 using Race_game_project.CellUnwalkableMaker;
 

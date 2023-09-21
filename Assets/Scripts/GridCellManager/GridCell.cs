@@ -6,17 +6,19 @@ using UnityEngine;
 using Assets.Scripts.GridInitializer;
 using Assets.Scripts.PathFindingManager;
 using System.Data;
+using Race_game_project.AIPathFinderManager;
 
 namespace Assets.Scripts.GridCellManager
 {
     [ExecuteInEditMode]
     public class GridCell : MonoBehaviour, IGridCell
     {
+        public List<KeyValuePair<IAIShortestPathFinder, Tuple<float, float>>> _carsThatWillPass;
         public int _x;
         public int _y;
-        public int _cost;
+        int _cost;
         int _costIncrementValue = 1;
-        public Vector3 _direction;
+        public Vector3 direction;
         bool _isChecked = false;
         public void SetUpCell(Transform parent, int y, int x)
         {
@@ -39,7 +41,7 @@ namespace Assets.Scripts.GridCellManager
         }
         public Vector3 GetDirection()
         {
-            return _direction;
+            return direction;
         }
         public void SetCost(int cost)
         {
@@ -56,11 +58,20 @@ namespace Assets.Scripts.GridCellManager
         }
         public void SetDirection(Vector3 direction)
         {
-            _direction = direction;
+            this.direction = direction;
         }
         public GameObject GetGameObject()
         {
             return this.gameObject;
+        }
+        public List<KeyValuePair<IAIShortestPathFinder, Tuple<float, float>>> GetListOfCarsThatWillPass()
+        {
+            return _carsThatWillPass;
+        }
+        public void AddCarThatVillPass(IAIShortestPathFinder car, float speed, float distance)
+        {
+            _carsThatWillPass.Add(KeyValuePair.Create(car, Tuple.Create(speed, distance)));
+
         }
     }
 }

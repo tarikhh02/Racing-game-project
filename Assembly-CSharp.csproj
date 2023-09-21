@@ -59,10 +59,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\InputManager\InputManager.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\IAIDirectionSettingManager.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\AICollisionHandler.cs" />
     <Compile Include="Assets\Scripts\TransferingInputsToMovementManager\TransferInputToMovement.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\ISpeedManager.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\IAIInputManager.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\IGridCell.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\SpeedManager.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\AIShortestPathFinder.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\SetCostFromEndToRest.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\CollisionHandler.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampPlayerMovementManager.cs" />
@@ -71,14 +75,16 @@
     <Compile Include="Assets\Scripts\PathFindingManager\PathFinder.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\CellDirectionSetter.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\ICollisionHandler.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\CellUnwalkableMarker.cs" />
     <Compile Include="Assets\Scripts\InputManager\IInputManager.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IAIShortestPathFinder.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\GridCell.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ICellUnwalkableMarker.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\AIDirectionSettingManager.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ISetCostFromEndToRest.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampPlayerMovementManager.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ICellDirectionSetter.cs" />
-    <Compile Include="Assets\Scripts\AIMoveManager\AIPlaceHolderMove.cs" />
     <Compile Include="Assets\Scripts\GridInitializer\GridInitialization.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampingDeterminationManager.cs" />
     <Compile Include="Assets\Scripts\MovementManager\IObjectMover.cs" />

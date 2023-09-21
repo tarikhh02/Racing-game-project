@@ -36,13 +36,13 @@ namespace Racing_game_project.CellMarkerManager
                     List<Collider[]> colliderList = new List<Collider[]>()
                     { 
                         Physics.OverlapBox(frontPositionVector + this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
-                        .Where(c => c.gameObject.tag != "GridCell").ToArray(),
+                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable").ToArray(),
                         Physics.OverlapBox(frontPositionVector - this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
-                        .Where(c => c.gameObject.tag != "GridCell").ToArray(),
+                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable").ToArray(),
                         Physics.OverlapBox(backPositionVector + this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
-                        .Where(c => c.gameObject.tag != "GridCell").ToArray(),
+                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable").ToArray(),
                         Physics.OverlapBox(backPositionVector - this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
-                        .Where(c => c.gameObject.tag != "GridCell").ToArray()
+                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable").ToArray()
                     };  
                     foreach (Collider[] colliders in colliderList)
                     {
@@ -54,6 +54,7 @@ namespace Racing_game_project.CellMarkerManager
                                 if(collider.gameObject.tag == "Obsticle")
                                 {
                                     grid[y][x].SetCost(60000);
+                                    grid[y][x].GetGameObject().tag = "Unwalkable";
                                 }
                                 //.... We can add another case where for example tag could be dirt so it's less efficient
                                 //P.S. cost can't be set manually because algorithm only works by not taking into consideration block if it's checked which can be fixed,
@@ -63,6 +64,7 @@ namespace Racing_game_project.CellMarkerManager
                         else
                         {
                             grid[y][x].SetCost(60000);
+                            grid[y][x].GetGameObject().tag = "Unwalkable";
                         }
                     }
                 }
