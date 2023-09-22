@@ -19,7 +19,7 @@ namespace Assets.Scripts.GridInitializer {
         int _gridHeight;
         [SerializeField]
         GameObject endPoint;
-        static List<List<IGridCell>> _grid = new List<List<IGridCell>>();
+        List<List<IGridCell>> _grid = new List<List<IGridCell>>();
         ICollisionHandler _collisionHandler;
         public void SetUpGrid()
         {
@@ -47,6 +47,14 @@ namespace Assets.Scripts.GridInitializer {
         public GameObject GetEndPoint()
         {
             return endPoint;
+        }
+        public int GetGridWidth()
+        {
+            return _gridHeight;
+        }
+        public int GetGridHeight()
+        {
+            return _gridHeight;
         }
     }
 }

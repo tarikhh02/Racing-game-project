@@ -9,7 +9,7 @@ namespace Assets.Scripts.GridCellManager
 {
     public interface IGridCell
     {
-        public void SetUpCell(Transform parent, int i, int j);
+        public void SetUpCell(Transform parent, int y, int x);
         public int GetX();
         public int GetY();
         public bool GetChecked();
