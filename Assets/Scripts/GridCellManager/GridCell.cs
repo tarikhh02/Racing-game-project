@@ -13,10 +13,10 @@ namespace Assets.Scripts.GridCellManager
     [ExecuteInEditMode]
     public class GridCell : MonoBehaviour, IGridCell
     {
-        public List<KeyValuePair<IAIShortestPathFinder, Tuple<float, float>>> _carsThatWillPass;
+        public List<KeyValuePair<IAIShortestPathFinder, Tuple<float, float>>> _carsThatWillPass = new List<KeyValuePair<IAIShortestPathFinder, Tuple<float, float>>>();
         public int _x;
         public int _y;
-        int _cost;
+        public int _cost;
         int _costIncrementValue = 1;
         public Vector3 direction;
         bool _isChecked = false;
@@ -71,7 +71,6 @@ namespace Assets.Scripts.GridCellManager
         public void AddCarThatVillPass(IAIShortestPathFinder car, float speed, float distance)
         {
             _carsThatWillPass.Add(KeyValuePair.Create(car, Tuple.Create(speed, distance)));
-
         }
     }
 }

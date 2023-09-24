@@ -50,7 +50,7 @@ namespace Assets.Scripts.GridInitializer {
         }
         public int GetGridWidth()
         {
-            return _gridHeight;
+            return _gridWidth;
         }
         public int GetGridHeight()
         {
