@@ -13,13 +13,13 @@ namespace Race_game_project.WalkableCellsFinderManager
             {
                 var cell = CheckCell(gridPosition, x + 1, y, scale);
                 CheckYAxis(height, gridPosition, ref cellsToChooseFrom, x + 1, y, scale);
-                AddCellToList(ref cellsToChooseFrom, ref cell);
+                AddCellToList(ref cellsToChooseFrom, cell);
             }
             if (x > 0)
             {
                 var cell = CheckCell(gridPosition, x - 1, y, scale);
                 CheckYAxis(height, gridPosition, ref cellsToChooseFrom, x - 1, y, scale);
-                AddCellToList(ref cellsToChooseFrom, ref cell);
+                AddCellToList(ref cellsToChooseFrom, cell);
             }
             CheckYAxis(height, gridPosition, ref cellsToChooseFrom, x, y, scale);
             return cellsToChooseFrom;
@@ -29,19 +29,21 @@ namespace Race_game_project.WalkableCellsFinderManager
             if (y < height - 1)
             {
                 var cell = CheckCell(gridPosition, x, y + 1, scale);
-                AddCellToList(ref cellsToChooseFrom, ref cell);
+                AddCellToList(ref cellsToChooseFrom, cell);
             }
             if (y > 0)
             {
                 var cell = CheckCell(gridPosition, x, y - 1, scale);
-                AddCellToList(ref cellsToChooseFrom, ref cell);
+                AddCellToList(ref cellsToChooseFrom, cell);
             }
         }
-        private void AddCellToList(ref List<IGridCell> cellsToChooseFrom, ref GridCell cell)
+        private void AddCellToList(ref List<IGridCell> cellsToChooseFrom, GridCell cell)
         {
-            Debug.DrawRay(cell.transform.position, -transform.up * 0.5f, Color.red, 20f);
             if (cell != null)
+            {
+                //Debug.DrawRay(cell.transform.position, -transform.up * 0.5f, Color.red, 20f);
                 cellsToChooseFrom.Add(cell);
+            }
         }
         private GridCell CheckCell(Vector3 gridStart, int x, int y, float scale)
         {

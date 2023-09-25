@@ -6,6 +6,6 @@ namespace Race_game_project.StartCellFinder
 {
     public interface IStartCellFinder
     {
-        public void GetStartCell(ref IGridCell startCell);
+        public GridCell GetStartCell();
     }
 }

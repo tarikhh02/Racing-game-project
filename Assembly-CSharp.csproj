@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B1181BAE-F3B9-EBCA-DA52-B641FD305420}</ProjectGuid>
+    <ProjectGuid>{8E02E3AE-571D-60F5-F67D-0830FBBC41AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,7 +53,7 @@
     <UnityVersion>2022.3.0f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\PROGRAMMING\VISUAL STUDIO\IDE\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity 2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity 2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\AIMoveManager\IAIInputManager.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\IGridCell.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\SpeedManager.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IIsPathFinishedChecker.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\AIShortestPathFinder.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\SetCostFromEndToRest.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\CollisionHandler.cs" />
@@ -78,22 +79,30 @@
     <Compile Include="Assets\Scripts\GridCellManager\ICollisionHandler.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\StartCellFinder.cs" />
+    <Compile Include="Assets\Scripts\AICarMovement.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\ICellAdder.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IsPathFinishedChecker.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\CellUnwalkableMarker.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IWalklableCellsFinder.cs" />
     <Compile Include="Assets\Scripts\InputManager\IInputManager.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IListByCostSorter.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\ListByCostSorter.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IAIShortestPathFinder.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\GridCell.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ICellUnwalkableMarker.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AIDirectionSettingManager.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\CellForPathChooser.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ISetCostFromEndToRest.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampPlayerMovementManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\WalkableCellsFinder.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\ICellForPathChooser.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ICellDirectionSetter.cs" />
     <Compile Include="Assets\Scripts\GridInitializer\GridInitialization.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampingDeterminationManager.cs" />
     <Compile Include="Assets\Scripts\MovementManager\IObjectMover.cs" />
     <Compile Include="Assets\Scripts\TransferingInputsToMovementManager\ITransferInputToMovement.cs" />
     <Compile Include="Assets\Scripts\GridInitializer\IGridInitialization.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\CellAdder.cs" />
     <Compile Include="Assets\Scripts\MovementManager\ObjectMover.cs" />
     <Compile Include="Assets\Scripts\CarMovement.cs" />
   </ItemGroup>

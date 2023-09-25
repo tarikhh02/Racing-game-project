@@ -14,24 +14,25 @@ namespace Racing_game_project.AIInputManager
     public class AIInputManager : MonoBehaviour, IAIInputManager
     {
         bool _arrived = false;
+        bool _isStart = true;
         public Vector3 _direction;
         int _forwardDirection = 1;
         int _sideDirection = 0;
         ITransferInputToMovement _transferDataManager;
         IObjectMover _moveObjectComponent;
         IAIDirectionSettingManager _aiDirectionSettingComponent;
-        private void Awake()
+        private void GetComponents()
         {
+            if (!_isStart)
+                return;
             _transferDataManager = this.GetComponent<TransferInputToMovement>();
             _moveObjectComponent = this.GetComponent<ObjectMover>();
             _aiDirectionSettingComponent = this.gameObject.GetComponent<AIDirectionSettingManager>(); 
+            _isStart = false;
         }
-        private void Update()
+        public void ManageAIInputData()
         {
-            ManageAIInputData();
-        }
-        private void ManageAIInputData()
-        {
+            GetComponents();
             RaycastHit hit;
             if (!_arrived && Physics.Raycast(this.transform.position, -this.transform.up, out hit, 0.5f))
             {
