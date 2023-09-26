@@ -11,6 +11,7 @@ TagManager:
   - Obsticle
   - HalfTrack
   - Unwalkable
+  - SecondStart
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ namespace Race_game_project.ListSortingManager
         {
             for (int i = 0; i < cellListToSort.Count; i++)
             {
-                for (int j = i; j < cellListToSort.Count - 1; j++)
+                for (int j = 0; j < cellListToSort.Count - 1; j++)
                 {
                     if (cellListToSort[j].GetCost() > cellListToSort[j + 1].GetCost())
                     {

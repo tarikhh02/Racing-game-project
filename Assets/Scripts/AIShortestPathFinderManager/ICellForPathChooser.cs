@@ -7,6 +7,6 @@ namespace Race_game_project.CellForPathChooserComponent
 {
     public interface ICellForPathChooser
     {
-        public IGridCell ChooseCellForPath(ref List<IGridCell> cellsToChoose, ref float previousDistance, float scale, float speed);
+        public ref IGridCell ChooseCellForPath(ref List<IGridCell> cellsToChoose, ref float previousDistance, float scale, float speed);
     }
 }

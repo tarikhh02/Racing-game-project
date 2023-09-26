@@ -28,13 +28,12 @@ namespace Race_game_project.AIPathFinderManager
         ICellForPathChooser _cellFinderComponent;
         ICellAdder _cellAddComponent;
         IIsPathFinishedChecker _pathFinishedChecker;
-        List<KeyValuePair<IGridCell, Vector3>> path = new List<KeyValuePair<IGridCell, Vector3>>();
+        List<KeyValuePair<IGridCell, Vector3>> _path = new List<KeyValuePair<IGridCell, Vector3>>();
         int _id = 0;
         public static int lastId = 0;
-        private bool _isStart = true;
-        private void GetComponents()
+        private void GetComponents(ref bool isStart)
         {
-            if (!_isStart)
+            if (!isStart)
                 return;
             _id = lastId++;
             _startCellFinder = this.gameObject.GetComponent<StartCellFinder.StartCellFinder>();
@@ -45,12 +44,13 @@ namespace Race_game_project.AIPathFinderManager
             _cellAddComponent = this.gameObject.GetComponent<CellAdder.CellAdder>();
             _pathFinishedChecker = this.gameObject.GetComponent<IsPathFinishedChecker>();
             _startCell = _startCellFinder.GetStartCell();
-            //FindShortestPath(_firstHalfGrid, 0f);
-            _isStart = false;
+            _startCell.AddCarThatVillPass(this, 0f, 0f);
+            _startCell.GetGameObject().GetComponent<MeshRenderer>().enabled = true;
+            _startCell.GetGameObject().GetComponent<MeshRenderer>().material = pathMaterial;
         }
-        public void FindShortestPath(GameObject gridComponent, float previousDistance)
+        public void FindShortestPath(GameObject gridComponent, float previousDistance, bool isStart = false)
         {
-            GetComponents();
+            GetComponents(ref isStart);
             var currentCell = _startCell;
             List<IGridCell> cellsToChooseFrom = new List<IGridCell>();
             int x = currentCell.GetX();
@@ -59,8 +59,8 @@ namespace Race_game_project.AIPathFinderManager
             cellsToChooseFrom = _walkableCellsFinder.FindWalkableCells(gridComponent.GetComponentInChildren<GridInitialization>().GetGridHeight(), 
                gridComponent.GetComponentInChildren<GridInitialization>().GetGridWidth(), gridComponent.transform.position, cellsToChooseFrom, x, y, scale);
             _cellListSorter.SortList(ref cellsToChooseFrom);
-            IGridCell pathCell = _cellFinderComponent.ChooseCellForPath(ref cellsToChooseFrom, ref previousDistance, scale, _objectMoverComponent.GetSpeed());
-            _cellAddComponent.AddCellToPath(ref path, ref pathCell, currentCell, pathMaterial);
+            ref IGridCell pathCell = ref _cellFinderComponent.ChooseCellForPath(ref cellsToChooseFrom, ref previousDistance, scale, _objectMoverComponent.GetSpeed());
+            _cellAddComponent.AddCellToPath(ref _path, ref pathCell, currentCell, pathMaterial);
             if (!_pathFinishedChecker.IsPathFinished(pathCell, gridComponent.GetComponentInChildren<GridInitialization>().GetEndPoint().transform.position))
             {
                 _startCell = pathCell;
@@ -70,6 +70,10 @@ namespace Race_game_project.AIPathFinderManager
         public int GetId()
         { 
             return _id; 
+        }
+        public List<KeyValuePair<IGridCell, Vector3>> GetPath()
+        {
+            return _path;
         }
     } 
 }

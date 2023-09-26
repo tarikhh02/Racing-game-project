@@ -1,4 +1,5 @@
-﻿using Racing_game_project.AIInputManager;
+﻿using Assets.Scripts;
+using Racing_game_project.AIInputManager;
 using UnityEngine;
 
 namespace Racing_game_project.AICollisionHandler
@@ -6,27 +7,30 @@ namespace Racing_game_project.AICollisionHandler
     public class AICollisionHandler : MonoBehaviour
     {
         AIInputManager.IAIInputManager _aiInputManagerComponent;
+        AICarMovement _aiManager;
         private void Awake()
         {
             _aiInputManagerComponent = this.gameObject.GetComponent<AIInputManager.AIInputManager>();
+            _aiManager = this.GetComponent<AICarMovement>();
         }
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "End")
             {
-                //_aiInputManagerComponent.SetArrived(true); -- When race is finished
-                _aiInputManagerComponent.SetDirection(new Vector3(0, 0, 1));
-                ResetAIPath();
+                _aiInputManagerComponent.SetDirection(new Vector3(1, 0, 0));
             }
             else if (other.gameObject.tag == "HalfTrack")
             {
-                _aiInputManagerComponent.SetDirection(new Vector3(0, 0, -1));
-                ResetAIPath();            
+                _aiInputManagerComponent.SetDirection(new Vector3(-1, 0, 0));
             }
-        }
-        private void ResetAIPath()
-        {
-            //CalculatePath
+            else if(other.gameObject.tag == "SecondStart")
+            {
+                _aiManager.SetPathFromHalf();
+            }
+            else if (other.gameObject.tag == "Start")
+            {
+
+            }
         }
     }
 }

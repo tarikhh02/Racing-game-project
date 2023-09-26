@@ -10,7 +10,7 @@ namespace Race_game_project.CellAdder
     {
         public void AddCellToPath(ref List<KeyValuePair<IGridCell, UnityEngine.Vector3>> path, ref IGridCell pathCell, IGridCell currentCell, Material material)
         {
-            path.Add(KeyValuePair.Create(currentCell, UnityEngine.Vector3.Normalize(pathCell.GetGameObject().transform.position - this.transform.position)));
+            path.Add(KeyValuePair.Create(currentCell, UnityEngine.Vector3.Normalize(pathCell.GetGameObject().transform.position - currentCell.GetGameObject().transform.position)));
             pathCell.GetGameObject().GetComponent<MeshRenderer>().enabled = true;
             pathCell.GetGameObject().GetComponent<MeshRenderer>().material = material;
         }

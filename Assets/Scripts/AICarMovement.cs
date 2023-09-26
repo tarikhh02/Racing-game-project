@@ -11,18 +11,29 @@ namespace Assets.Scripts
         GameObject firstHalfGrid;
         [SerializeField]
         GameObject secondHalfGrid;
+        public static bool isSecondHalf; 
         IAIShortestPathFinder _aiPathFinder;
         IAIInputManager _aiInputManager;
         void Awake()
         {
             _aiPathFinder = this.gameObject.GetComponent<AIShortestPathFinder>();
             _aiInputManager = this.gameObject.GetComponent<AIInputManager>();
-            _aiPathFinder.FindShortestPath(firstHalfGrid, 0f);
+            SetPathFromStart();
         }
 
         void Update()
         {
-            //_aiInputManager.ManageAIInputData();
+            _aiInputManager.ManageAIInputData();
+        }
+        public void SetPathFromStart()
+        {
+            isSecondHalf = false;
+            _aiPathFinder.FindShortestPath(firstHalfGrid, 0f, true);
+        }
+        public void SetPathFromHalf()
+        {
+            isSecondHalf = true;
+            _aiPathFinder.FindShortestPath(secondHalfGrid, 0f, true);
         }
     }
 }
