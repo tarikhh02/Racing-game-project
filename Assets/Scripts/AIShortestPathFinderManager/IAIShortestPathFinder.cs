@@ -1,6 +1,7 @@
 using Assets.Scripts.GridCellManager;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Race_game_project.AIPathFinderManager
@@ -8,7 +9,8 @@ namespace Race_game_project.AIPathFinderManager
     public interface IAIShortestPathFinder
     {
         public void FindShortestPath(GameObject gridComponent, float previousDistance, bool isStart = false);
-        public int GetId();
         public List<KeyValuePair<IGridCell, Vector3>> GetPath();
+        public System.Guid GetId();
+        public void SetId(System.Guid id);
     }
 }

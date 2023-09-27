@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\AIMoveManager\IAIDirectionSettingManager.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AICollisionHandler.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IStartCellFinder.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IPathClearingManager.cs" />
     <Compile Include="Assets\Scripts\TransferingInputsToMovementManager\TransferInputToMovement.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\ISpeedManager.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\IAIInputManager.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\AIShortestPathFinder.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\SetCostFromEndToRest.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\CollisionHandler.cs" />
+    <Compile Include="Assets\Scripts\IAICarMovement.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampPlayerMovementManager.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampingDeterminationManager.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\IPathFinder.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\WalkableCellsFinder.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\ICellForPathChooser.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ICellDirectionSetter.cs" />
+    <Compile Include="Assets\Scripts\AIShortestPathFinderManager\PathClearingManager.cs" />
     <Compile Include="Assets\Scripts\GridInitializer\GridInitialization.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampingDeterminationManager.cs" />
     <Compile Include="Assets\Scripts\MovementManager\IObjectMover.cs" />

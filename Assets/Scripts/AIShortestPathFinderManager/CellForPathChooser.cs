@@ -14,14 +14,15 @@ namespace Race_game_project.CellForPathChooserComponent
         public ref IGridCell ChooseCellForPath(ref List<IGridCell> cellsToChoose, ref float previousDistance, float scale, float speed)
         {
             bool isCellFound = true;
+            if (cellsToChoose.Count == 0)
+                return ref _cell;
             _cell = cellsToChoose[0];
             cellsToChoose.RemoveAt(0);
             float currentDistance = previousDistance + scale + Math.Abs(_cell.GetDirection().x * _cell.GetDirection().z);
             var listOfCarsThatWillPass = _cell.GetListOfCarsThatWillPass();
             foreach (var car in listOfCarsThatWillPass)
             {
-                if ((int)(currentDistance / (speed + 0.001f)) == (int)(car.Value.Item2 / (car.Value.Item1 + 0.001f)) 
-                    && true) //Math.Abs(currentDistance - car.Value.Item2) <= this.transform.localScale.z / 2)
+                if ((int)(currentDistance / (speed + 0.001f)) == (int)(car.Value.Item2 / (car.Value.Item1 + 0.001f))) 
                 {
                     isCellFound = false;
                     break;

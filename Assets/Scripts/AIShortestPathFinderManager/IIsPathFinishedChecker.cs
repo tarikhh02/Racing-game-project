@@ -6,6 +6,6 @@ namespace Race_game_project.PathFinishChecker
 {
     public interface IIsPathFinishedChecker
     {
-        public bool IsPathFinished(IGridCell pathCell, Vector3 endPosition);
+        public bool IsPathFinished(IGridCell pathCell, Vector3 endPosition, int pathCount);
     }
 }

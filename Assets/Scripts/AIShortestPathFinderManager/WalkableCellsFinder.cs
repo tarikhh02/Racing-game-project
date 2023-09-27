@@ -41,7 +41,6 @@ namespace Race_game_project.WalkableCellsFinderManager
         {
             if (cell != null)
             {
-                //Debug.DrawRay(cell.transform.position, -transform.up * 0.5f, Color.red, 20f);
                 cellsToChooseFrom.Add(cell);
             }
         }

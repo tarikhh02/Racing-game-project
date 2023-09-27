@@ -1,11 +1,14 @@
-﻿using Assets.Scripts.GridCellManager;
+﻿using Assets.Scripts;
+using Assets.Scripts.GridCellManager;
 using Assets.Scripts.GridInitializer;
 using Assets.Scripts.MovementManager;
 using Assets.Scripts.TransferingInputsToMovementManager;
 using Race_game_project.AIPathFinderManager;
 using Racing_game_project.AIDirectionSetter;
+using Race_game_project.AICarMovement;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -40,31 +43,55 @@ namespace Racing_game_project.AIInputManager
             GetComponents();
             if (!_arrived)
             {
-                Vector3 colliderPosition = this.transform.position + this.transform.forward * this.transform.localScale.z * 2;
-                Collider[] colliders = Physics.OverlapBox(colliderPosition, new Vector3(2, 0.5f, 1f), 
-                    Quaternion.Euler(0f, this.transform.rotation.y + Vector3.SignedAngle(this.transform.forward, _direction, Vector3.up), 0f)).Where(s => s.CompareTag("GridCell")).ToArray();
-                foreach (Collider collider in colliders)
+                bool hasFoundCell = false;
+                List<IGridCell> listOfCarsAssignedToCell = new List<IGridCell>();
+                Vector3 frontPosition = this.transform.position + this.transform.forward * this.transform.localScale.z / 2;
+                listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition));
+                listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition + this.transform.right * this.transform.localScale.x / 2));
+                listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition - this.transform.right * this.transform.localScale.x / 2));
+                foreach (var cell in listOfCarsAssignedToCell)
                 {
-                    foreach (var car in collider.gameObject.GetComponent<GridCell>().GetListOfCarsThatWillPass())
+                    if (cell == null)
+                        continue;
+                    foreach (var car in cell.GetListOfCarsThatWillPass())
                     {
                         if (this.GetComponent<AIShortestPathFinder>().GetId() == car.Key.GetId())
                         {
-                            var cell = collider.gameObject.GetComponent<GridCell>();
                             var path = _aiPathFinder.GetPath();
                             foreach (var pathCell in path)
                             {
                                 if (pathCell.Key.GetX() == cell.GetX() && pathCell.Key.GetY() == cell.GetY())
                                 {
                                     _direction = pathCell.Value;
+                                    hasFoundCell = true;
+                                    break;
                                 }
                             }
                             break;
                         }
                     }
+                    if (hasFoundCell)
+                        break;
                 }
-                _aiDirectionSettingComponent.SetDirections(ref _forwardDirection, ref _sideDirection, _moveObjectComponent.GetSpeed(), _direction);
-                _transferDataManager.TransferInputsToMovementData(_forwardDirection, false);
-                _transferDataManager.TransferInputsToMovementData(this.transform.forward, _sideDirection * this.transform.right, new Vector3(0, _sideDirection, 0));
+                if (!hasFoundCell && listOfCarsAssignedToCell.Where(c => c != null).Count() > 0)
+                {
+                    this.gameObject.GetComponent<AICarMovement>().SetNewPath();
+                }
+            }
+            _aiDirectionSettingComponent.SetDirections(ref _forwardDirection, ref _sideDirection, _moveObjectComponent.GetSpeed(), _direction);
+            _transferDataManager.TransferInputsToMovementData(_forwardDirection, false);
+            _transferDataManager.TransferInputsToMovementData(this.transform.forward, _sideDirection * this.transform.right, new Vector3(0, _sideDirection, 0));
+        }
+        private IGridCell GetCellsWithCarSignature(Vector3 position)
+        {
+            RaycastHit hit;
+            if ((Physics.Raycast(position, -this.transform.up, out hit, 0.5f) && hit.collider.CompareTag("GridCell")))
+            {
+                return hit.collider.GetComponent<GridCell>();
+            }
+            else 
+            { 
+                return null; 
             }
         }
         public Vector3 GetCurrentDirection()

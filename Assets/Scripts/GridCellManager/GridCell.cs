@@ -7,6 +7,7 @@ using Assets.Scripts.GridInitializer;
 using Assets.Scripts.PathFindingManager;
 using System.Data;
 using Race_game_project.AIPathFinderManager;
+using System.Linq;
 
 namespace Assets.Scripts.GridCellManager
 {
@@ -71,6 +72,11 @@ namespace Assets.Scripts.GridCellManager
         public void AddCarThatVillPass(IAIShortestPathFinder car, float speed, float distance)
         {
             _carsThatWillPass.Add(KeyValuePair.Create(car, Tuple.Create(speed, distance)));
+        }
+        public void RemoveCarThatVillPass(IAIShortestPathFinder car)
+        {
+            var carInList = _carsThatWillPass.FirstOrDefault(c => c.Key.GetId() == car.GetId());
+            _carsThatWillPass.Remove(carInList);
         }
     }
 }

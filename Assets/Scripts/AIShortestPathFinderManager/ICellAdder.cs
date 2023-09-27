@@ -8,5 +8,6 @@ namespace Race_game_project.CellAdder
     public interface ICellAdder
     {
         public void AddCellToPath(ref List<KeyValuePair<IGridCell, Vector3>> path, ref IGridCell pathCell, IGridCell currentCell, Material material);
+        public void AddCellToPath(ref List<KeyValuePair<IGridCell, Vector3>> path, IGridCell pathCell);
     }
 }
