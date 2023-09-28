@@ -26,7 +26,7 @@ namespace Race_game_project.PositionManagingComponent
             {
                 for (int j = i; j < _listOfAllCars.Count - 1; j++)
                 {
-                    if (_listOfAllCars[j].GetProgress() > _listOfAllCars[j + 1].GetProgress()
+                    if ((_listOfAllCars[j].GetProgress() > _listOfAllCars[j + 1].GetProgress() && _listOfAllCars[j].GetLap() == _listOfAllCars[j + 1].GetLap())
                         || _listOfAllCars[j].GetLap() < _listOfAllCars[j + 1].GetLap())
                     {
                         var temp = _listOfAllCars[j];
