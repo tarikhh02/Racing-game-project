@@ -63,18 +63,23 @@
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\StartCellFinder\IStartCellFinder.cs" />
     <Compile Include="Assets\Scripts\InputManager\InputManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\ListByCostSorter\ListByCostSorter.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\TimerManager\ITimerManager.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager\IAIInputManager.cs" />
     <Compile Include="Assets\Scripts\TransferingInputsToMovementManager\TransferInputToMovement.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\ISpeedManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\WalkableCellFinder\WalkableCellsFinder.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\IGridCell.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\SpeedManager.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\ProgressCalculatingManager\IProgressCalculator.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\CollisionForUIHandler\CollisionHandler.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AICollisionHandler\AICollisionHandler.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\SetCostFromEndToRest.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\CollisionHandler.cs" />
     <Compile Include="Assets\Scripts\IAICarMovement.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampPlayerMovementManager.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\SpeedWritingManager\ISpeedWriter.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampingDeterminationManager.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\TimerManager\TimerManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\AIShortestPathFinder\AIShortestPathFinder.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\IPathFinder.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\PathFinder.cs" />
@@ -85,11 +90,16 @@
     <Compile Include="Assets\Scripts\AICarMovement.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\ListByCostSorter\IListByCostSorter.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\StartCellFinder\StartCellFinder.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\ManageUI.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\IManageUI.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\AIShortestPathFinder\IAIShortestPathFinder.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\CollisionForUIHandler\ICollisionHandler.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\CellUnwalkableMarker.cs" />
     <Compile Include="Assets\Scripts\InputManager\IInputManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\CellForPathChooser\CellForPathChooser.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\ProgressCalculatingManager\ProgressCalculator.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IsPathFinishedChecker\IIsPathFinishedChecker.cs" />
+    <Compile Include="Assets\Scripts\PositionManager.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\GridCell.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ICellUnwalkableMarker.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ISetCostFromEndToRest.cs" />
@@ -105,9 +115,33 @@
     <Compile Include="Assets\Scripts\MovementManager\IObjectMover.cs" />
     <Compile Include="Assets\Scripts\TransferingInputsToMovementManager\ITransferInputToMovement.cs" />
     <Compile Include="Assets\Scripts\GridInitializer\IGridInitialization.cs" />
+    <Compile Include="Assets\Scripts\UIImplementationManager\SpeedWritingManager\SpeedWriter.cs" />
     <Compile Include="Assets\Scripts\MovementManager\ObjectMover.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AIDirectionSetter\AIDirectionSettingManager.cs" />
     <Compile Include="Assets\Scripts\CarMovement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
