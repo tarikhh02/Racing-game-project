@@ -14,7 +14,8 @@ namespace Race_game_project.ProgresCalculatingManager
         {
             if (goingBackwards)
             {
-                raceProgress.text = "Progress: 0%";
+                if(isPlayer)
+                    raceProgress.text = "Progress: 0%";
                 return;
             }
             float progress;

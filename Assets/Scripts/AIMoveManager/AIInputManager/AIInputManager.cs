@@ -1,18 +1,12 @@
-﻿using Assets.Scripts;
-using Assets.Scripts.GridCellManager;
-using Assets.Scripts.GridInitializer;
+﻿using Assets.Scripts.GridCellManager;
 using Assets.Scripts.MovementManager;
 using Assets.Scripts.TransferingInputsToMovementManager;
 using Race_game_project.AIPathFinderManager;
 using Racing_game_project.AIDirectionSetter;
 using Race_game_project.AICarMovement;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.GridBrushBase;
 
 
 namespace Racing_game_project.AIInputManager
@@ -22,6 +16,7 @@ namespace Racing_game_project.AIInputManager
         bool _arrived = false;
         bool _isStart = true;
         public Vector3 _direction;
+        Vector3 _lastUnwalkableCellPos = Vector3.zero;
         int _forwardDirection = 1;
         int _sideDirection = 0;
         ITransferInputToMovement _transferDataManager;
@@ -40,7 +35,7 @@ namespace Racing_game_project.AIInputManager
         }
         public void ManageAIInputData()
         {
-            bool canInitializePath = true;
+            bool _canInitializePath = true;
             GetComponents();
             if (!_arrived)
             {
@@ -48,19 +43,19 @@ namespace Racing_game_project.AIInputManager
                 List<IGridCell> listOfCarsAssignedToCell = new List<IGridCell>();
                 Vector3 frontPosition = this.transform.position + this.transform.forward * this.transform.localScale.z / 2;
                 listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition));
-                //listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition + this.transform.right * this.transform.localScale.x / 2));
-                //listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition - this.transform.right * this.transform.localScale.x / 2));
+                listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition + this.transform.right * this.transform.localScale.x / 2));
+                listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition - this.transform.right * this.transform.localScale.x / 2));
+                if(Vector3.Distance(frontPosition, _lastUnwalkableCellPos) <= 1f && listOfCarsAssignedToCell.Where(c => c != null).Count() == 0)
+                {
+                    _canInitializePath = false;
+                    _forwardDirection = -1;
+                    _sideDirection = 0;
+                    this.gameObject.GetComponent<AICarMovement>().SetNewPath();
+                }
                 foreach (var cell in listOfCarsAssignedToCell)
                 {
                     if (cell == null)
                         continue;
-                    if(cell.GetGameObject().CompareTag("Unwalkable"))
-                    {
-                        canInitializePath = false;
-                        _sideDirection = 0;
-                        _forwardDirection = -1;
-                        continue;
-                    }
                     foreach (var car in cell.GetListOfCarsThatWillPass())
                     {
                         if (this.GetComponent<AIShortestPathFinder>().GetId() == car.Key.GetId())
@@ -86,7 +81,7 @@ namespace Racing_game_project.AIInputManager
                     this.gameObject.GetComponent<AICarMovement>().SetNewPath();
                 }
             }
-            if(canInitializePath)
+            if(_canInitializePath)
                 _aiDirectionSettingComponent.SetDirections(ref _forwardDirection, ref _sideDirection, _moveObjectComponent.GetSpeed(), _direction);
             _transferDataManager.TransferInputsToMovementData(_forwardDirection, false);
             _transferDataManager.TransferInputsToMovementData(this.transform.forward, _sideDirection * this.transform.right, new Vector3(0, _sideDirection, 0));
@@ -94,14 +89,18 @@ namespace Racing_game_project.AIInputManager
         private IGridCell GetCellsWithCarSignature(Vector3 position)
         {
             RaycastHit hit;
-            if ((Physics.Raycast(position, -this.transform.up, out hit, 0.5f) && (hit.collider.CompareTag("GridCell") || hit.collider.CompareTag("Unwalkable"))))
+            if (Physics.Raycast(position, -this.transform.up, out hit, 0.5f))
             {
-                return hit.collider.GetComponent<GridCell>();
+                if (hit.collider.CompareTag("GridCell"))
+                {
+                    return hit.collider.GetComponent<GridCell>();
+                }
+                else if(hit.collider.CompareTag("Unwalkable"))
+                {
+                    _lastUnwalkableCellPos = hit.collider.transform.position;
+                }
             }
-            else 
-            { 
-                return null; 
-            }
+            return null;
         }
         public Vector3 GetCurrentDirection()
         {

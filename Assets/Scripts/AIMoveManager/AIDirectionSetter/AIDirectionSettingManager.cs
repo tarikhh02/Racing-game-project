@@ -16,21 +16,23 @@ namespace Racing_game_project.AIDirectionSetter
             }
             else if (currentYAngle < rotationAngle + this.transform.eulerAngles.y)
             {
-                if (currentSpeed > 3f)
-                    forwardDirection = -1;
-                else
-                    forwardDirection = 1;
+                SetForwardDirection(ref forwardDirection, currentSpeed);
                 sideDirection = 1;
             }
             else
             {
-                if (currentSpeed > 3f)
-                    forwardDirection = -1;
-                else
-                    forwardDirection = 1;
+                SetForwardDirection(ref forwardDirection, currentSpeed);
                 sideDirection = -1;
             }
 
+        }
+
+        private void SetForwardDirection(ref int forwardDirection, float currentSpeed)
+        {
+            if (currentSpeed > 3f)
+                forwardDirection = -1;
+            else
+                forwardDirection = 1;
         }
     }
 }
