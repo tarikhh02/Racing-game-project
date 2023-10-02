@@ -13,11 +13,13 @@ namespace Racing_game_project.AIInputManager
 {
     public class AIInputManager : MonoBehaviour, IAIInputManager
     {
+        bool _canInitializePath = true;
         bool _arrived = false;
         bool _isStart = true;
         public Vector3 _direction;
         Vector3 _lastUnwalkableCellPos = Vector3.zero;
-        int _forwardDirection = 1;
+        Vector3 _lastSeenDirection = Vector3.zero;
+        float _forwardDirection = 1;
         int _sideDirection = 0;
         ITransferInputToMovement _transferDataManager;
         IObjectMover _moveObjectComponent;
@@ -35,7 +37,6 @@ namespace Racing_game_project.AIInputManager
         }
         public void ManageAIInputData()
         {
-            bool _canInitializePath = true;
             GetComponents();
             if (!_arrived)
             {
@@ -45,13 +46,28 @@ namespace Racing_game_project.AIInputManager
                 listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition));
                 listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition + this.transform.right * this.transform.localScale.x / 2));
                 listOfCarsAssignedToCell.Add(GetCellsWithCarSignature(frontPosition - this.transform.right * this.transform.localScale.x / 2));
-                if(Vector3.Distance(frontPosition, _lastUnwalkableCellPos) <= 1f && listOfCarsAssignedToCell.Where(c => c != null).Count() == 0)
+                if(listOfCarsAssignedToCell.Where(c => c != null).Count() == 0)
+                {
+                    if(GetCellsWithCarSignature(frontPosition * 2) == null)
+                    {
+                        _canInitializePath = false;
+                        _forwardDirection = -1;
+                        _sideDirection = 0;
+                    }
+                    else
+                    {
+                        _canInitializePath = true;
+                        _forwardDirection = 1;
+                    }
+                    this.gameObject.GetComponent<AICarMovement>().SetNewPath();
+                }
+                /*if (Vector3.Distance(frontPosition, _lastUnwalkableCellPos) <= 1f && listOfCarsAssignedToCell.Where(c => c != null).Count() == 0)
                 {
                     _canInitializePath = false;
                     _forwardDirection = -1;
                     _sideDirection = 0;
                     this.gameObject.GetComponent<AICarMovement>().SetNewPath();
-                }
+                }*/
                 foreach (var cell in listOfCarsAssignedToCell)
                 {
                     if (cell == null)
@@ -82,13 +98,14 @@ namespace Racing_game_project.AIInputManager
                 }
             }
             if(_canInitializePath)
-                _aiDirectionSettingComponent.SetDirections(ref _forwardDirection, ref _sideDirection, _moveObjectComponent.GetSpeed(), _direction);
+                _aiDirectionSettingComponent.SetDirections(ref _forwardDirection, ref _sideDirection, _moveObjectComponent.GetSpeed(), _direction, _moveObjectComponent.GetMaxMovementSpeed());
             _transferDataManager.TransferInputsToMovementData(_forwardDirection, false);
             _transferDataManager.TransferInputsToMovementData(this.transform.forward, _sideDirection * this.transform.right, new Vector3(0, _sideDirection, 0));
         }
         private IGridCell GetCellsWithCarSignature(Vector3 position)
         {
             RaycastHit hit;
+            Debug.DrawRay(position, -this.transform.up, Color.red, 2f);
             if (Physics.Raycast(position, -this.transform.up, out hit, 0.5f))
             {
                 if (hit.collider.CompareTag("GridCell"))

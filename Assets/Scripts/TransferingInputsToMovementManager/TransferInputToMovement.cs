@@ -14,7 +14,7 @@ namespace Assets.Scripts.TransferingInputsToMovementManager
             _speedManager = GetComponent<SpeedManager.SpeedManager>();
             _objectMover = GetComponent<ObjectMover>();
         }
-        public void TransferInputsToMovementData(int direction, bool isRotationalMovement)
+        public void TransferInputsToMovementData(float direction, bool isRotationalMovement)
         {
             if (isRotationalMovement)
             {

@@ -21,7 +21,7 @@ namespace Assets.Scripts.SpeedManager
         {
             _moveObjectComponent = GetComponent<ObjectMover>();
         }
-        public void ManageForwardMovement(int forwardDirection)
+        public void ManageForwardMovement(float forwardDirection)
         {
             ref float speed = ref _moveObjectComponent.GetSpeed();
             ref float steeringAngle = ref _moveObjectComponent.GetSteeringAngle();
@@ -42,13 +42,13 @@ namespace Assets.Scripts.SpeedManager
                 Break(ref speed, ref steeringAngle, forwardDirection);
             }
         }
-        public void MoveForward(ref float speed, ref float steeringAngle, float maxSteeringRotation, int forwardDirection)
+        public void MoveForward(ref float speed, ref float steeringAngle, float maxSteeringRotation, float forwardDirection)
         {
             speed += throtle * forwardDirection;
             if (steeringAngle < maxSteeringRotation)
                 steeringAngle += rotationSensitivity;
         }
-        public void Break(ref float speed, ref float steeringAngle, int forwardDirection)
+        public void Break(ref float speed, ref float steeringAngle, float forwardDirection)
         {
             speed += (breakingForce + drag) * forwardDirection;
             if (steeringAngle > 0)

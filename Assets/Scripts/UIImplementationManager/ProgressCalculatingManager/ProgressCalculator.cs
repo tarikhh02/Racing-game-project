@@ -12,7 +12,7 @@ namespace Race_game_project.ProgresCalculatingManager
         int _progress;
         public void CalculateProgress(Transform start, Transform halfTrack, Transform secondStart, Transform end, bool goingBackwards, bool _hasPassedHalfTrack, bool isPlayer)
         {
-            if (goingBackwards)
+            if (goingBackwards && _progress <= 0)
             {
                 if(isPlayer)
                     raceProgress.text = "Progress: 0%";
@@ -35,7 +35,9 @@ namespace Race_game_project.ProgresCalculatingManager
         }
         public int GetProgress()
         {
-            return _progress;
+            if (_progress > 0)
+                return _progress;
+            return 0;
         }
     }
 }

@@ -8,9 +8,9 @@ namespace Assets.Scripts.SpeedManager
 {
     public interface ISpeedManager
     {
-        public void ManageForwardMovement(int forwardDirection);
-        public void MoveForward(ref float speed, ref float steeringAngle, float maxSteeringRotation, int forwardDirection);
-        public void Break(ref float speed, ref float steeringAngle, int forwardDirection);
+        public void ManageForwardMovement(float forwardDirection);
+        public void MoveForward(ref float speed, ref float steeringAngle, float maxSteeringRotation, float forwardDirection);
+        public void Break(ref float speed, ref float steeringAngle, float forwardDirection);
         public void IncrementSteerinAngle();
         public void ApplyDrag();
     }

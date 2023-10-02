@@ -49,7 +49,7 @@ namespace Race_game_project.CollisionForUIHandler
             {
                 _goingBackwards = false;
                 _hasPassedHalfTrack = condition;
-                if (condition)
+                if (!condition)
                     _timerManager.ResetTimer();
             }
         }
