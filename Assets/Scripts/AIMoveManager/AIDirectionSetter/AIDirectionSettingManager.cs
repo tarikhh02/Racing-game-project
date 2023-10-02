@@ -26,7 +26,6 @@ namespace Racing_game_project.AIDirectionSetter
                 SetForwardDirection(ref forwardDirection, currentSpeed, maxSpeed);
                 sideDirection = -1;
             }
-            print(_speedIncrement);
         }
         private float SetForwardDirectionValue(float forwardDirection)
         {
