@@ -12,6 +12,7 @@ TagManager:
   - HalfTrack
   - Unwalkable
   - SecondStart
+  - WayPoint
   layers:
   - Default
   - TransparentFX

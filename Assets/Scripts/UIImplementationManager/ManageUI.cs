@@ -12,14 +12,6 @@ namespace Race_game_project.UIImplementationManager
     public class ManageUI : MonoBehaviour, IManageUI
     {
         [SerializeField]
-        Transform start;
-        [SerializeField]
-        Transform halfTrack;
-        [SerializeField]
-        Transform secondStart;
-        [SerializeField]
-        Transform end;
-        [SerializeField]
         TextMeshProUGUI position;
         [SerializeField]
         bool isPlayer = false;
@@ -43,7 +35,7 @@ namespace Race_game_project.UIImplementationManager
                 _speedWritingManager.WriteSpeed();
                 _timerManager.WriteTime();
             }
-            _progressCalcManager.CalculateProgress(start, halfTrack, secondStart, end, _collisionHandler.GetIsGoingBackwards(), _collisionHandler.GetHasPassedHalfTrack(), isPlayer);
+            _progressCalcManager.CalculateProgress(isPlayer, _collisionHandler.GetIsGoingBackwards());
         }
         public int GetProgress()
         {

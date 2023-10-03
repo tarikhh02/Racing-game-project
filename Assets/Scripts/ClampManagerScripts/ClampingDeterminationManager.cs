@@ -15,10 +15,10 @@ namespace Assets.Scripts.ClampManagerScripts
         float backRayZ = 1.0f;
         public bool PlayerMovementNeedsToBeClamped(ref RaycastHit hit)
         {
-            Vector3 rightRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * rayX;
-            Vector3 leftRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * -rayX;
-            Vector3 rightBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * rayX;
-            Vector3 leftBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * -rayX;
+            Vector3 rightRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * rayX - Vector3.up * 0.09f;
+            Vector3 leftRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * -rayX - Vector3.up * 0.09f;
+            Vector3 rightBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * rayX - Vector3.up * 0.09f;
+            Vector3 leftBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * -rayX - Vector3.up * 0.09f;
             if (Physics.Raycast(rightRayPosition, -this.transform.up, out hit, 2f)
                 && Physics.Raycast(leftRayPosition, -this.transform.up, out hit, 2f)
                 && Physics.Raycast(rightBackRayPosition, -this.transform.up, out hit, 2f)

@@ -66,10 +66,10 @@ namespace Racing_game_project.AIInputManager
             {
                 bool hasFoundCell = false;
                 List<IGridCell> listOfVisibleToCell = new List<IGridCell>();
-                Vector3 frontPosition = this.transform.position + Vector3.up * 0.2f + this.transform.forward * this.transform.localScale.z / 2;
+                Vector3 frontPosition = this.transform.position + Vector3.up * 0.2f;
                 listOfVisibleToCell.Add(GetCellsWithCarSignature(frontPosition));
-                listOfVisibleToCell.Add(GetCellsWithCarSignature(frontPosition + this.transform.right * this.transform.localScale.x / 2));
-                listOfVisibleToCell.Add(GetCellsWithCarSignature(frontPosition - this.transform.right * this.transform.localScale.x / 2));
+                listOfVisibleToCell.Add(GetCellsWithCarSignature(frontPosition + this.transform.right * 0.25f));
+                listOfVisibleToCell.Add(GetCellsWithCarSignature(frontPosition - this.transform.right * 0.25f));
                 if (_timer == 5 || _isStuck)
                 {
                     _timer = 0;
@@ -140,10 +140,6 @@ namespace Racing_game_project.AIInputManager
                 {
                     return hit.collider.GetComponent<GridCell>();
                 }
-                //else if(hit.collider.CompareTag("Unwalkable"))
-                //{
-                //   _lastCarPosition = hit.collider.transform.position;
-                //}
             }
             return null;
         }

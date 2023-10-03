@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Race_game_project.WayPointManager;
+using System;
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,36 +10,46 @@ namespace Race_game_project.ProgresCalculatingManager
     public class ProgressCalculator : MonoBehaviour, IProgressCalculator
     {
         [SerializeField]
-        TextMeshProUGUI raceProgress;
+        TextMeshProUGUI _raceProgress;
+        [SerializeField]
+        GameObject _currentWayPoint;
+        [SerializeField]
+        GameObject _nextWayPoint;
+        int _wayPointsNumber = 9;
+        int _currentWayPointNumber = 0;
         int _progress;
-        public void CalculateProgress(Transform start, Transform halfTrack, Transform secondStart, Transform end, bool goingBackwards, bool _hasPassedHalfTrack, bool isPlayer)
+        public void CalculateProgress(bool isPlayer, bool _isGoingBackwards)
         {
-            if (goingBackwards && _progress <= 0)
+            if(_isGoingBackwards)
             {
-                if(isPlayer)
-                    raceProgress.text = "Progress: 0%";
+                _raceProgress.text = "Progress: 0%";
                 return;
             }
-            float progress;
-            if (!_hasPassedHalfTrack)
+            float totalDistance = Vector3.Distance(_currentWayPoint.transform.position, _nextWayPoint.transform.position);
+            float progress = (totalDistance - Vector3.Distance(this.transform.position, _nextWayPoint.transform.position)) / totalDistance;
+            progress = _currentWayPointNumber * (100 / _wayPointsNumber) + (progress * 100) / _wayPointsNumber;
+            if (_progress < progress) 
+                _progress = (int)progress;
+            if(isPlayer)
             {
-                progress = Vector3.Distance(this.transform.position, halfTrack.position);
-                progress = 50 - (progress / 2 / Vector3.Distance(start.position, halfTrack.position) * 100);
+                _raceProgress.text = "Progress: " + _progress + "%";
             }
-            else
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("WayPoint"))
             {
-                progress = Vector3.Distance(this.transform.position, end.position);
-                progress = 100 - (progress / 2 / Vector3.Distance(secondStart.position, end.position) * 100);
+                IWayPoint wayPoint = other.gameObject.GetComponent<WayPoint>();
+                _currentWayPoint = other.gameObject;
+                _nextWayPoint = wayPoint.GetNextWayPoint();
+                _currentWayPointNumber = wayPoint.GetWayPointIndex();
+                if(_currentWayPointNumber == 0)
+                    _progress = 0;
             }
-            _progress = (int)progress;
-            if (isPlayer)
-                raceProgress.text = "Progress: " + _progress + "%";
         }
         public int GetProgress()
         {
-            if (_progress > 0)
-                return _progress;
-            return 0;
+            return _progress;
         }
     }
 }
