@@ -21,13 +21,13 @@ namespace Racing_game_project.AICollisionHandler
             {
                 _aiManager.SetIsSecondHalfOfGrid(false);
                 _aiInputManagerComponent.SetArrived(true);
-                _aiInputManagerComponent.SetDirection(new Vector3(0, 0, 1));
+                _aiInputManagerComponent.SetDirection(new Vector3(1, 0, 0));
             }
             else if (other.gameObject.tag == "HalfTrack")
             {
                 _aiManager.SetIsSecondHalfOfGrid(true);
                 _aiInputManagerComponent.SetArrived(true);
-                _aiInputManagerComponent.SetDirection(new Vector3(0, 0, -1));
+                _aiInputManagerComponent.SetDirection(new Vector3(-1, 0, 0));
             }
             else if(other.gameObject.tag == "SecondStart")
             {
