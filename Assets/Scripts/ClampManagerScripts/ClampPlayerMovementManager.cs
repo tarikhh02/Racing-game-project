@@ -1,31 +1,32 @@
 using Assets.Scripts.ClampManagerScripts;
+using Assets.Scripts.MovementManager;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder;
 
 public class ClampPlayerMovementManager : MonoBehaviour, IClampPlayerMovementManager
 {
-    Vector3 _lastPos;
-    Quaternion _lastRotation;
+    IObjectMover _objecMoveComponent;
     IClampingDeterminationManager _clampManager;
     RaycastHit hit;
     private void Awake()
     {
+        _objecMoveComponent = this.gameObject.GetComponent<ObjectMover>();
         _clampManager = this.GetComponent<ClampingDeterminationManager>();
-        _lastPos = transform.localPosition;
-        _lastRotation = transform.rotation;
     }
     public void ClampPlayerMovement()
     {
-        if (_clampManager.PlayerMovementNeedsToBeClamped(ref hit))
+        if (_clampManager.PlayerMovementNeedsToBeClamped())
         {
-            this.transform.position = _lastPos;
-            this.transform.rotation = _lastRotation;
-        }
-        else
-        {
-            _lastPos = this.transform.position;
-            _lastRotation = this.transform.rotation;
+            if (System.Math.Abs(_objecMoveComponent.GetSpeed()) > 0.1f)
+            {
+                if (_objecMoveComponent.GetSpeed() < 0)
+                    _objecMoveComponent.GetSpeed() += 0.02f;
+                else
+                    _objecMoveComponent.GetSpeed() -= 0.02f;
+            }
         }
     }
 }

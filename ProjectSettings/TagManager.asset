@@ -13,6 +13,7 @@ TagManager:
   - Unwalkable
   - SecondStart
   - WayPoint
+  - Grass
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,6 @@ namespace Assets.Scripts.ClampManagerScripts
 {
     public interface IClampingDeterminationManager
     {
-        public bool PlayerMovementNeedsToBeClamped(ref RaycastHit hit);
+        public bool PlayerMovementNeedsToBeClamped();
     }
 }

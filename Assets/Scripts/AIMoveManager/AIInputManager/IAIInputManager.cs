@@ -9,5 +9,6 @@ namespace Racing_game_project.AIInputManager
         public Vector3 GetCurrentDirection();
         public void SetDirection(Vector3 direction);
         public void SetArrived(bool arrived);
+        public float GetSideDirection();
     }
 }

@@ -162,5 +162,9 @@ namespace Racing_game_project.AIInputManager
         {
             _arrived = arrived;
         }
+        public float GetSideDirection()
+        {
+            return _sideDirection;
+        }
     }
 }

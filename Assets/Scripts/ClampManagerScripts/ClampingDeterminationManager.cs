@@ -13,20 +13,30 @@ namespace Assets.Scripts.ClampManagerScripts
         float frontRayZ = 0.005f;
         [SerializeField]
         float backRayZ = 1.0f;
-        public bool PlayerMovementNeedsToBeClamped(ref RaycastHit hit)
+        public bool PlayerMovementNeedsToBeClamped()
         {
-            Vector3 rightRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * rayX - Vector3.up * 0.09f;
-            Vector3 leftRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * -rayX - Vector3.up * 0.09f;
-            Vector3 rightBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * rayX - Vector3.up * 0.09f;
-            Vector3 leftBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * -rayX - Vector3.up * 0.09f;
-            if (Physics.Raycast(rightRayPosition, -this.transform.up, out hit, 2f)
-                && Physics.Raycast(leftRayPosition, -this.transform.up, out hit, 2f)
-                && Physics.Raycast(rightBackRayPosition, -this.transform.up, out hit, 2f)
-                && Physics.Raycast(leftBackRayPosition, -this.transform.up, out hit, 2f))
+            Vector3 rightRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * rayX;
+            Vector3 leftRayPosition = this.transform.forward * frontRayZ + this.transform.position + this.transform.right * -rayX;
+            Vector3 rightBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * rayX;
+            Vector3 leftBackRayPosition = -this.transform.forward * backRayZ + this.transform.position + this.transform.right * -rayX;
+            if (HasCastedRayHitSomething(rightRayPosition)
+                || HasCastedRayHitSomething(leftRayPosition)
+                || HasCastedRayHitSomething(rightBackRayPosition)
+                || HasCastedRayHitSomething(leftBackRayPosition))
             {
                 return false;
             }
             return true;
+        }
+        private bool HasCastedRayHitSomething(Vector3 position)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(position, -this.transform.up, out hit, 2f))
+            {
+                if(hit.collider.CompareTag("GridCell"))
+                    return true;
+            }
+            return false;
         }
     }
 }
