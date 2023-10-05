@@ -166,5 +166,9 @@ namespace Racing_game_project.AIInputManager
         {
             return _sideDirection;
         }
+        public void SetForwardDirection(float value)
+        {
+            _forwardDirection = value;
+        }
     }
 }

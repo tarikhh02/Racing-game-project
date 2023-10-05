@@ -40,7 +40,7 @@ namespace Racing_game_project.AIDirectionSetter
 
         private void SetForwardDirection(ref float forwardDirection, float currentSpeed, float maxSpeed)
         {
-            if (currentSpeed > maxSpeed - 1)
+            if (currentSpeed > (maxSpeed - maxSpeed / 4))
                 forwardDirection = SetForwardDirectionValue(-1);
             else
                 forwardDirection = SetForwardDirectionValue(1);

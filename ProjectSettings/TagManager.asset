@@ -18,6 +18,7 @@ TagManager:
   - ThrotleIncrementPowerUp
   - AlternativePath
   - AlternativePathDecision
+  - BreakingDecision
   layers:
   - Default
   - TransparentFX

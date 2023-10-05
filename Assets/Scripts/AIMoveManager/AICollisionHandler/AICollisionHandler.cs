@@ -3,6 +3,7 @@ using Racing_game_project.AIInputManager;
 using Race_game_project.AICarMovement;
 using UnityEngine;
 using Race_game_project.AIPathFinderManager;
+using Assets.Scripts.MovementManager;
 
 namespace Racing_game_project.AICollisionHandler
 {
@@ -10,10 +11,12 @@ namespace Racing_game_project.AICollisionHandler
     {
         AIInputManager.IAIInputManager _aiInputManagerComponent;
         IAICarMovement _aiManager;
+        IObjectMover _objectMover;
         private void Awake()
         {
             _aiInputManagerComponent = this.gameObject.GetComponent<AIInputManager.AIInputManager>();
             _aiManager = this.GetComponent<AICarMovement>();
+            _objectMover = this.GetComponent<ObjectMover>();
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -29,9 +32,17 @@ namespace Racing_game_project.AICollisionHandler
                 _aiInputManagerComponent.SetArrived(true);
                 _aiInputManagerComponent.SetDirection(new Vector3(-1, 0, 0));
             }
+            else if (other.gameObject.tag == "BreakingDecision")
+            {
+                float x = Random.value;
+                if (x < 0.5f)
+                {
+                    _objectMover.GetSpeed() -= _objectMover.GetMaxMovementSpeed() / 4 + 1;
+                }
+            }
             else if (other.gameObject.tag == "AlternativePathDecision")
             {
-                if (Random.value < 0.5f)
+                if (_objectMover.GetSpeed() <= (_objectMover.GetMaxMovementSpeed() - _objectMover.GetMaxMovementSpeed() / 4))
                 {
                     _aiInputManagerComponent.SetArrived(true);
                     _aiInputManagerComponent.SetDirection(new Vector3(0, 0, -1));
