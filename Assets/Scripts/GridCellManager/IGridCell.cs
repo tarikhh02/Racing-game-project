@@ -22,6 +22,5 @@ namespace Assets.Scripts.GridCellManager
         public List<KeyValuePair<IAIShortestPathFinder, Tuple<float, float>>> GetListOfCarsThatWillPass();
         public void AddCarThatVillPass(IAIShortestPathFinder car, float speed, float distance);
         public void RemoveCarThatVillPass(IAIShortestPathFinder car);
-
     }
 }

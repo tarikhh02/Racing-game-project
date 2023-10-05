@@ -16,6 +16,8 @@ TagManager:
   - Grass
   - MaxSpeedIncrementPowerUp
   - ThrotleIncrementPowerUp
+  - AlternativePath
+  - AlternativePathDecision
   layers:
   - Default
   - TransparentFX

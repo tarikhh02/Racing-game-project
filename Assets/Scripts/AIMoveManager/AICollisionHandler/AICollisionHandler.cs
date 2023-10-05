@@ -29,12 +29,25 @@ namespace Racing_game_project.AICollisionHandler
                 _aiInputManagerComponent.SetArrived(true);
                 _aiInputManagerComponent.SetDirection(new Vector3(-1, 0, 0));
             }
+            else if (other.gameObject.tag == "AlternativePathDecision")
+            {
+                if (Random.value < 0.5f)
+                {
+                    _aiInputManagerComponent.SetArrived(true);
+                    _aiInputManagerComponent.SetDirection(new Vector3(0, 0, -1));
+                }
+            }
             else if(other.gameObject.tag == "SecondStart")
             {
                 _aiInputManagerComponent.SetArrived(false);
                 _aiManager.SetNewPath();
             }
             else if (other.gameObject.tag == "Start")
+            {
+                _aiInputManagerComponent.SetArrived(false);
+                _aiManager.SetNewPath();
+            }
+            else if (other.gameObject.tag == "AlternativePath")
             {
                 _aiInputManagerComponent.SetArrived(false);
                 _aiManager.SetNewPath();

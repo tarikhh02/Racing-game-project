@@ -8,9 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
-    <ProjectGuid>{8E02E3AE-571D-60F5-F67D-0830FBBC41AF}</ProjectGuid>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{0AECC7A3-D212-33A6-9FD3-39668CF072F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -78,8 +77,8 @@
     <Compile Include="Assets\Scripts\UIImplementationManager\CollisionForUIHandler\CollisionHandler.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AICollisionHandler\AICollisionHandler.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\SetCostFromEndToRest.cs" />
-    <Compile Include="Assets\Scripts\GridCellManager\CollisionHandler.cs" />
     <Compile Include="Assets\Scripts\PowerUpsManager\ScriptableObjects\BaseScripts\IPowerUpImplementation.cs" />
+    <Compile Include="Assets\Scripts\GridCellManager\CollisionHandler.cs" />
     <Compile Include="Assets\Scripts\IAICarMovement.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampPlayerMovementManager.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\SpeedWritingManager\ISpeedWriter.cs" />

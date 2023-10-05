@@ -56,9 +56,6 @@ namespace Racing_game_project.CellMarkerManager
                                     grid[y][x].SetCost(60000);
                                     grid[y][x].GetGameObject().tag = "Unwalkable";
                                 }
-                                //.... We can add another case where for example tag could be dirt so it's less efficient
-                                //P.S. cost can't be set manually because algorithm only works by not taking into consideration block if it's checked which can be fixed,
-                                //but goal is to make program determine automatically if certain area is walkable or less efficient
                             }
                         }
                         else
