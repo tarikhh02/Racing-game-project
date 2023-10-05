@@ -13,5 +13,7 @@ namespace Assets.Scripts.SpeedManager
         public void Break(ref float speed, ref float steeringAngle, float forwardDirection);
         public void IncrementSteerinAngle();
         public void ApplyDrag();
+        public void AddToThrotle(float value);
+        public void AddToBreakingForce(float value);
     }
 }

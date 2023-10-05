@@ -76,5 +76,13 @@ namespace Assets.Scripts.SpeedManager
             else
                 speed = 0;
         }
+        public void AddToThrotle(float value)
+        {
+            throtle += value;
+        }
+        public void AddToBreakingForce(float value)
+        {
+            breakingForce += value;
+        }
     }
 }

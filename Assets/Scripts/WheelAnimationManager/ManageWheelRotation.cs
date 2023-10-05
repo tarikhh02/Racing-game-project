@@ -57,7 +57,6 @@ namespace Race_game_project.WheelAnimationManager
                     currentAngle = 360 - currentAngle;
                 if (currentAngle > 90)
                     steeringSpeed = 0;
-                print(currentAngle);
                 float rotationPos = this.transform.localEulerAngles.y + steeringSpeed / 2 * direction;
                 wheel.transform.localRotation = Quaternion.Euler(new Vector3(0, steeringSpeed / 2 * direction, 0));
             }
