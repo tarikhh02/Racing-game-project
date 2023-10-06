@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\GridCellManager\IGridCell.cs" />
     <Compile Include="Assets\Scripts\SpeedManager\SpeedManager.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\ProgressCalculatingManager\IProgressCalculator.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager\CarStuckManager.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\CollisionForUIHandler\CollisionHandler.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AICollisionHandler\AICollisionHandler.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\SetCostFromEndToRest.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scripts\PathFindingManager\CellDirectionSetter.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\ICollisionHandler.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\CellForPathChooser\ICellForPathChooser.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager\VisibleCellFinderManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\CellAdder\CellAdder.cs" />
     <Compile Include="Assets\Scripts\AICarMovement.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\ListByCostSorter\IListByCostSorter.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="Assets\Scripts\UIImplementationManager\IManageUI.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\AIShortestPathFinder\IAIShortestPathFinder.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\CollisionForUIHandler\ICollisionHandler.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager\IAIGoingBackwardsManager.cs" />
     <Compile Include="Assets\Scripts\PowerUpsManager\ManagePowerUps.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\CellUnwalkableMarker.cs" />
     <Compile Include="Assets\Scripts\InputManager\IInputManager.cs" />
@@ -107,6 +110,8 @@
     <Compile Include="Assets\Scripts\UIImplementationManager\ProgressCalculatingManager\ProgressCalculator.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\IsPathFinishedChecker\IIsPathFinishedChecker.cs" />
     <Compile Include="Assets\Scripts\PositionManager.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager\IVIsibleCellFinderManager.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager\ICarStuckManager.cs" />
     <Compile Include="Assets\Scripts\GridCellManager\GridCell.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ICellUnwalkableMarker.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\WayPointManager\IWayPoint.cs" />
@@ -120,6 +125,7 @@
     <Compile Include="Assets\Scripts\PathFindingManager\ICellDirectionSetter.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\WayPointManager\WayPoint.cs" />
     <Compile Include="Assets\Scripts\GridInitializer\GridInitialization.cs" />
+    <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager\AIGoingBackwardsManager.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampingDeterminationManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\WalkableCellFinder\IWalklableCellsFinder.cs" />
     <Compile Include="Assets\Scripts\MovementManager\IObjectMover.cs" />

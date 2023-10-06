@@ -23,9 +23,9 @@ public class ClampPlayerMovementManager : MonoBehaviour, IClampPlayerMovementMan
             if (System.Math.Abs(_objecMoveComponent.GetSpeed()) > 0.1f)
             {
                 if (_objecMoveComponent.GetSpeed() < 0)
-                    _objecMoveComponent.GetSpeed() += 0.02f;
+                    _objecMoveComponent.GetSpeed() += 0.02f * _objecMoveComponent.GetMaxMovementSpeed() / 4;
                 else
-                    _objecMoveComponent.GetSpeed() -= 0.02f;
+                    _objecMoveComponent.GetSpeed() -= 0.02f * _objecMoveComponent.GetMaxMovementSpeed() / 4;
             }
         }
     }

@@ -146,6 +146,9 @@ GameObject:
   - component: {fileID: 7087945603543501488}
   - component: {fileID: 8918524557537441845}
   - component: {fileID: 6851698404297970048}
+  - component: {fileID: 7656237265396593342}
+  - component: {fileID: -8560431671671880757}
+  - component: {fileID: 39445216565274524}
   m_Layer: 0
   m_Name: AICar
   m_TagString: Untagged
@@ -483,6 +486,43 @@ MonoBehaviour:
   _frontWheels:
   - {fileID: 61680627997993808}
   - {fileID: 5060910912122460486}
+  _isPlayer: 0
+--- !u!114 &7656237265396593342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464929007582505075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff99b76b51c2a843891d4fd6307706c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8560431671671880757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464929007582505075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06fd9e7a36ad7a4ba9ba6bc617a4ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &39445216565274524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464929007582505075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e484c5665f149740aeb774a71ea997f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1616903479013307485
 GameObject:
   m_ObjectHideFlags: 0
