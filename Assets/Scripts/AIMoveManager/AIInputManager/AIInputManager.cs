@@ -73,7 +73,7 @@ namespace Racing_game_project.AIInputManager
                 if (_timer == 5 || _isStuck)
                 {
                     _timer = 0;
-                    if (Vector3.Distance(this.transform.position, _lastCarPosition) <= 1f)
+                    if (Vector3.Distance(this.transform.position, _lastCarPosition) <= 2f)
                     {
                         _isStuck = true;
                         _canInitializePath = GoBackwards();

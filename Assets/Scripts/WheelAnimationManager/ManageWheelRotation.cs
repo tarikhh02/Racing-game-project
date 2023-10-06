@@ -40,7 +40,7 @@ namespace Race_game_project.WheelAnimationManager
         private void RotateFrontWheelsSideWaysForAI(float steeringSpeed)
         {
             float rotationDirection = _aiInputManager.GetSideDirection();
-            RotateSideWays(steeringSpeed, rotationDirection);
+            RotateSideWays(steeringSpeed, rotationDirection / 3);
         }
 
         private void RotateFrontWheelsSideWaysForPlayer(float steeringSpeed)

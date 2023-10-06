@@ -6,7 +6,7 @@ namespace Race_game_project.PowerUpsManager
 {
     public class ManagePowerUps : MonoBehaviour
     {
-        public bool isUsingPowerUp = false;
+        bool isUsingPowerUp = false;
         float _timer;
         PowerUpBase powerUp;
         IObjectMover _moveObjectComponent;

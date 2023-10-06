@@ -35,7 +35,7 @@ namespace Racing_game_project.AICollisionHandler
             else if (other.gameObject.tag == "BreakingDecision")
             {
                 float x = Random.value;
-                if (x < 0.5f)
+                if (x < 0.7f && _objectMover.GetSpeed() >= _objectMover.GetMaxMovementSpeed() / 4 + 1)
                 {
                     _objectMover.GetSpeed() -= _objectMover.GetMaxMovementSpeed() / 4 + 1;
                 }
