@@ -1,11 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using Assets.Scripts.GridInitializer;
-using Assets.Scripts.PathFindingManager;
-using System.Data;
 using Race_game_project.AIPathFinderManager;
 using System.Linq;
 

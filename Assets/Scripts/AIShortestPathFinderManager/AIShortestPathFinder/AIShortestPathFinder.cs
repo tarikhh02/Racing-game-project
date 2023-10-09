@@ -3,6 +3,7 @@ using Assets.Scripts.GridInitializer;
 using Assets.Scripts.MovementManager;
 using Race_game_project.CellAdder;
 using Race_game_project.CellForPathChooserComponent;
+using Race_game_project.IdHandlingManager;
 using Race_game_project.ListSortingManager;
 using Race_game_project.PathCleaningManager;
 using Race_game_project.PathFinishChecker;
@@ -84,13 +85,13 @@ namespace Race_game_project.AIPathFinderManager
         {
             return _path;
         }
+        public GameObject GetGameObject()
+        {
+            return this.gameObject;
+        }
         public Guid GetId()
         {
-            return _id;
-        }
-        public void SetId(Guid id)
-        {
-            _id = id;
+            return this.gameObject.GetComponent<IdHandler>().GetId();
         }
     } 
 }

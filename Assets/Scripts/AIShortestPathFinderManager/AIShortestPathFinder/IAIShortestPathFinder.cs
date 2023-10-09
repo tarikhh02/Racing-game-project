@@ -10,7 +10,7 @@ namespace Race_game_project.AIPathFinderManager
     {
         public void FindShortestPath(GameObject gridComponent, float previousDistance, bool isStart = false);
         public List<KeyValuePair<IGridCell, Vector3>> GetPath();
+        public GameObject GetGameObject();
         public System.Guid GetId();
-        public void SetId(System.Guid id);
     }
 }

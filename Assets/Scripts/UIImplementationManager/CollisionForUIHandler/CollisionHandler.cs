@@ -61,5 +61,10 @@ namespace Race_game_project.CollisionForUIHandler
         {
             return _goingBackwards;
         }
+        public void ResetMovementTrackers()
+        {
+            _goingBackwards = false;
+            _hasPassedHalfTrack = false;
+        }
     }
 }

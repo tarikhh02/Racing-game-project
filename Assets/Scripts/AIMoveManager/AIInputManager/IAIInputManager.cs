@@ -10,6 +10,8 @@ namespace Racing_game_project.AIInputManager
         public void SetDirection(Vector3 direction);
         public void SetArrived(bool arrived);
         public float GetSideDirection();
+        public void SetSideDirection(int value);
         public void SetForwardDirection(float value);
+        public void FinishRace();
     }
 }

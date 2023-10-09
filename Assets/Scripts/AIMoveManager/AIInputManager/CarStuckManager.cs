@@ -20,7 +20,7 @@ namespace Race_game_project.ManagerIfCarIsStuck
             listOfVisibleToCell.Add(GetCellsWithCarSignature(frontPosition));
             listOfVisibleToCell.Add(GetCellsWithCarSignature(frontPosition + this.transform.right * 0.25f));
             listOfVisibleToCell.Add(GetCellsWithCarSignature(frontPosition - this.transform.right * 0.25f));
-            if (timer == 5 || isStuck)
+            if (timer >= 5 || isStuck)
             {
                 timer = 0;
                 if (Vector3.Distance(this.transform.position, _lastCarPosition) <= 2f)

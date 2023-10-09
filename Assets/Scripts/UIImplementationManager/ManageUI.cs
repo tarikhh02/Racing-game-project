@@ -54,5 +54,10 @@ namespace Race_game_project.UIImplementationManager
         {
             return isPlayer;
         }
+        public void ResetTracking()
+        {
+            _collisionHandler.ResetMovementTrackers();
+            _progressCalcManager.ResetProgressCalculation();
+        }
     }
 }

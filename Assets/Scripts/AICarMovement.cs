@@ -21,7 +21,6 @@ namespace Race_game_project.AICarMovement
         {
             _aiPathFinder = this.gameObject.GetComponent<AIShortestPathFinder>();
             _aiInputManager = this.gameObject.GetComponent<AIInputManager>();
-            _aiPathFinder.SetId(Guid.NewGuid());
             SetNewPath();
         }
         void Update()

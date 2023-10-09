@@ -10,6 +10,7 @@ using System.Collections;
 using Race_game_project.VisibleCellFinder;
 using Race_game_project.AIBackwardsGoingManagement;
 using Race_game_project.ManagerIfCarIsStuck;
+using Race_game_project.UIImplementationManager;
 
 namespace Racing_game_project.AIInputManager
 {
@@ -18,6 +19,7 @@ namespace Racing_game_project.AIInputManager
         bool _arrived = false;
         bool _isStart = true;
         bool _isStuck = false;
+        bool _isRaceFinished = false;
         public Vector3 _direction;
         Vector3? _carUnwalkableStartPos = null;
         Vector3 _startCarPos = new Vector3();
@@ -32,6 +34,7 @@ namespace Racing_game_project.AIInputManager
         IVIsibleCellFinderManager _visibleCellFinderManager;
         IAIGoingBackwardsManager _backwardsGoingManager;
         ICarStuckManager _carStuckManager;
+        IManageUI _uiManager;
         private void Awake()
         {
             _startCarPos = this.transform.position;
@@ -41,16 +44,24 @@ namespace Racing_game_project.AIInputManager
         private void Update()
         {
             if (this.transform.position.y < -1f 
-                || (_carUnwalkableStartPos != null && Vector3.Distance(_carUnwalkableStartPos.Value, this.transform.position) > 20f))
+                || (_carUnwalkableStartPos != null && Vector3.Distance(_carUnwalkableStartPos.Value, this.transform.position) > 15f))
             {
-                this.transform.position = _startCarPos;
-                this.transform.rotation = _startCarRot;
-                _direction = Vector3.zero;
-                _moveObjectComponent.GetSpeed() = 0;
-                _isStuck = false;
-                _aiCarMovement.SetNewPath();
+                ResetCar();
             }
         }
+
+        private void ResetCar()
+        {
+            this.transform.position = _startCarPos;
+            this.transform.rotation = _startCarRot;
+            _direction = Vector3.zero;
+            _moveObjectComponent.GetSpeed() = 0;
+            _isStuck = false;
+            _aiCarMovement.SetIsSecondHalfOfGrid(false);
+            _aiCarMovement.SetNewPath();
+            _uiManager.ResetTracking();
+        }
+
         private void GetComponents()
         {
             if (!_isStart)
@@ -62,6 +73,7 @@ namespace Racing_game_project.AIInputManager
             _visibleCellFinderManager = this.gameObject.GetComponent<VisibleCellFinderManager>();
             _backwardsGoingManager = this.gameObject.GetComponent<AIGoingBackwardsManager>();
             _carStuckManager = this.gameObject.GetComponent<CarStuckManager>();
+            _uiManager = this.GetComponent<ManageUI>();
             _isStart = false;
         }
         public void ManageAIInputData()
@@ -87,7 +99,7 @@ namespace Racing_game_project.AIInputManager
                 if (!hasFoundCell && listOfVisibleToCell.Where(c => c != null).Count() > 0 && !_isStuck)
                     _aiCarMovement.SetNewPath();
             }
-            if (canInitializePath)
+            if (canInitializePath && !_isRaceFinished)
                 _aiDirectionSettingComponent.SetDirections(ref _forwardDirection, ref _sideDirection, _moveObjectComponent.GetSpeed(), _direction, _moveObjectComponent.GetMaxMovementSpeed());
             _transferDataManager.TransferInputsToMovementData(_forwardDirection, false);
             _transferDataManager.TransferInputsToMovementData(this.transform.forward, _sideDirection * this.transform.right, new Vector3(0, _sideDirection, 0));
@@ -115,9 +127,17 @@ namespace Racing_game_project.AIInputManager
         {
             return _sideDirection;
         }
+        public void SetSideDirection(int value)
+        {
+            _sideDirection = value;
+        }
         public void SetForwardDirection(float value)
         {
             _forwardDirection = value;
+        }
+        public void FinishRace()
+        {
+            _isRaceFinished = true;
         }
     }
 }

@@ -7,5 +7,6 @@ namespace Race_game_project.CollisionForUIHandler
     {
         public bool GetHasPassedHalfTrack();
         public bool GetIsGoingBackwards();
+        public void ResetMovementTrackers();
     }
 }

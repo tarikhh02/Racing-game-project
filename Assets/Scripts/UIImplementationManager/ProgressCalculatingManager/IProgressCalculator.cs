@@ -8,5 +8,6 @@ namespace Race_game_project.ProgresCalculatingManager
     {
         public void CalculateProgress(bool isPlayer, bool isGoingBackwards);
         public int GetProgress();
+        public void ResetProgressCalculation();
     }
 }

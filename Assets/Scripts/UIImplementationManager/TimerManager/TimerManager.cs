@@ -9,6 +9,8 @@ namespace Race_game_project.TimerManager
     {
         [SerializeField]
         TextMeshProUGUI lapTime;
+        [SerializeField]
+        TextMeshProUGUI lap;
         int _lapNumber = 0;
         float _timer;
         private void Awake()
@@ -28,6 +30,10 @@ namespace Race_game_project.TimerManager
             else
                 return " " + number.ToString();
         }
+        private void WriteLap()
+        {
+            lap.text = "Lap: "+ _lapNumber + "/3";
+        }
         public void WriteTime()
         {
             var timer = _timer;
@@ -42,6 +48,8 @@ namespace Race_game_project.TimerManager
         {
             _timer = 0;
             _lapNumber++;
+            if (lap != null)
+                WriteLap();
         }
         public int GetLap()
         {
