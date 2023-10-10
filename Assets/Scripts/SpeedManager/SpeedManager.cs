@@ -17,6 +17,7 @@ namespace Assets.Scripts.SpeedManager
         [SerializeField]
         float breakingForce = 0.007f;
         IObjectMover _moveObjectComponent;
+        bool _isBreaking = false;
         private void Awake()
         {
             _moveObjectComponent = GetComponent<ObjectMover>();
@@ -35,10 +36,12 @@ namespace Assets.Scripts.SpeedManager
             }
             if (speed >= movingForwardConstraint1 && speed <= movingForwardConstraint2)
             {
+                _isBreaking = false;
                 MoveForward(ref speed, ref steeringAngle, maxSteeringRotation, forwardDirection);
             }
             else if(forwardDirection * speed < 0)
             {
+                _isBreaking = true;
                 Break(ref speed, ref steeringAngle, forwardDirection);
             }
         }
@@ -63,6 +66,7 @@ namespace Assets.Scripts.SpeedManager
         }
         public  void ApplyDrag()
         {
+            _isBreaking = false;
             ref float speed = ref _moveObjectComponent.GetSpeed();
             ref float steeringAngle = ref _moveObjectComponent.GetSteeringAngle();
             if (steeringAngle > 0)
@@ -83,6 +87,10 @@ namespace Assets.Scripts.SpeedManager
         public void AddToBreakingForce(float value)
         {
             breakingForce += value;
+        }
+        public bool GetIsBreaking()
+        {
+            return _isBreaking;
         }
     }
 }

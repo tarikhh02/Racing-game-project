@@ -140,6 +140,7 @@
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampPlayerMovementManager.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager\AIInputManager.cs" />
     <Compile Include="Assets\Scripts\PowerUpsManager\PowerUpsSctipts\ObjectDisabler.cs" />
+    <Compile Include="Assets\Scripts\TrailManager\ManageTrails.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\PathClearingManager\PathClearingManager.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\ICellDirectionSetter.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\WayPointManager\WayPoint.cs" />

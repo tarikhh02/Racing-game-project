@@ -15,5 +15,6 @@ namespace Assets.Scripts.SpeedManager
         public void ApplyDrag();
         public void AddToThrotle(float value);
         public void AddToBreakingForce(float value);
+        public bool GetIsBreaking();
     }
 }
