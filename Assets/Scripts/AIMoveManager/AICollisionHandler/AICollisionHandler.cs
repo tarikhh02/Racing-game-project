@@ -1,8 +1,5 @@
-﻿using Assets.Scripts;
-using Racing_game_project.AIInputManager;
-using Race_game_project.AICarMovement;
+﻿using Race_game_project.AICarMovement;
 using UnityEngine;
-using Race_game_project.AIPathFinderManager;
 using Assets.Scripts.MovementManager;
 
 namespace Racing_game_project.AICollisionHandler
@@ -37,7 +34,7 @@ namespace Racing_game_project.AICollisionHandler
                 float x = Random.value;
                 if (x < 0.7f && _objectMover.GetSpeed() >= _objectMover.GetMaxMovementSpeed() / 4 + 1)
                 {
-                    _objectMover.GetSpeed() -= _objectMover.GetMaxMovementSpeed() / 4 + 1;
+                    _objectMover.GetSpeed() -= _objectMover.GetMaxMovementSpeed() / 4;
                 }
             }
             else if (other.gameObject.tag == "AlternativePathDecision")
@@ -48,7 +45,15 @@ namespace Racing_game_project.AICollisionHandler
                     _aiInputManagerComponent.SetDirection(new Vector3(0, 0, -1));
                 }
             }
-            else if(other.gameObject.tag == "SecondStart")
+            else if (other.gameObject.tag == "AlternativePathDirectioning")
+            {
+                if (_objectMover.GetSpeed() <= (_objectMover.GetMaxMovementSpeed() - _objectMover.GetMaxMovementSpeed() / 4))
+                {
+                    _aiInputManagerComponent.SetArrived(true);
+                    _aiInputManagerComponent.SetDirection(new Vector3(0, 0, -1));
+                }
+            }
+            else if (other.gameObject.tag == "SecondStart")
             {
                 _aiInputManagerComponent.SetArrived(false);
                 _aiManager.SetNewPath();

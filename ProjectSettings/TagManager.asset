@@ -20,6 +20,7 @@ TagManager:
   - AlternativePathDecision
   - BreakingDecision
   - AlternativeRoad
+  - AlternativePathDirectioning
   layers:
   - Default
   - TransparentFX
