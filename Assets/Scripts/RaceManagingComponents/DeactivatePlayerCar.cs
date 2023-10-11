@@ -8,8 +8,11 @@ namespace Race_game_project.DeactivateCarManager
     {
         [SerializeField]
         GameObject _cameraWithMapView;
+        IActivateAIAudio _audioActivator;
         public void DeactivateCar(ManageUI car)
         {
+            _audioActivator = this.GetComponent<ActivateAIAudio>();
+            _audioActivator.ActivateAIAutdio();
             _cameraWithMapView.SetActive(true);
             this.gameObject.SetActive(false);
         }

@@ -18,6 +18,8 @@ namespace Assets.Scripts.SpeedManager
         float breakingForce = 0.007f;
         IObjectMover _moveObjectComponent;
         bool _isBreaking = false;
+        bool _hasAchievedMaximumSpeed = false;
+        bool _isLoweringSpeed = false;
         private void Awake()
         {
             _moveObjectComponent = GetComponent<ObjectMover>();
@@ -36,13 +38,23 @@ namespace Assets.Scripts.SpeedManager
             }
             if (speed >= movingForwardConstraint1 && speed <= movingForwardConstraint2)
             {
+                _isLoweringSpeed = false;
+                _hasAchievedMaximumSpeed = false;
                 _isBreaking = false;
                 MoveForward(ref speed, ref steeringAngle, maxSteeringRotation, forwardDirection);
             }
             else if(forwardDirection * speed < 0)
             {
+                _isLoweringSpeed = true;
                 _isBreaking = true;
+                _hasAchievedMaximumSpeed = false;
                 Break(ref speed, ref steeringAngle, forwardDirection);
+            }
+            else
+            {
+                _isLoweringSpeed = false;
+                _isBreaking = false;
+                _hasAchievedMaximumSpeed = true;
             }
         }
         public void MoveForward(ref float speed, ref float steeringAngle, float maxSteeringRotation, float forwardDirection)
@@ -66,6 +78,8 @@ namespace Assets.Scripts.SpeedManager
         }
         public  void ApplyDrag()
         {
+            _isLoweringSpeed = true;
+            _hasAchievedMaximumSpeed = false;
             _isBreaking = false;
             ref float speed = ref _moveObjectComponent.GetSpeed();
             ref float steeringAngle = ref _moveObjectComponent.GetSteeringAngle();
@@ -91,6 +105,14 @@ namespace Assets.Scripts.SpeedManager
         public bool GetIsBreaking()
         {
             return _isBreaking;
+        }
+        public bool GetHasAchievedMaximumSpeed()
+        {
+            return _hasAchievedMaximumSpeed;
+        }
+        public bool GetIsLoweringSpeed()
+        {
+            return _isLoweringSpeed;
         }
     }
 }

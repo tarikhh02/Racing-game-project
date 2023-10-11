@@ -64,6 +64,8 @@
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\StartCellFinder\IStartCellFinder.cs" />
     <Compile Include="Assets\Scripts\InputManager\InputManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\ListByCostSorter\ListByCostSorter.cs" />
+    <Compile Include="Assets\Scripts\AudioScripts\IInputForAudioManager.cs" />
+    <Compile Include="Assets\Scripts\AudioScripts\State.cs" />
     <Compile Include="Assets\Scripts\PowerUpsManager\ScriptableObjects\MaxSpeedIncreasePowerUp.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\TimerManager\ITimerManager.cs" />
     <Compile Include="Assets\Scripts\RaceManagingComponents\DeactivatePlayerCar.cs" />
@@ -92,8 +94,10 @@
     <Compile Include="Assets\Scripts\ClampManagerScripts\IClampingDeterminationManager.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\TimerManager\TimerManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\AIShortestPathFinder\AIShortestPathFinder.cs" />
+    <Compile Include="Assets\Scripts\AudioScripts\AudioManagement.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\IPathFinder.cs" />
     <Compile Include="Assets\Scripts\PathFindingManager\PathFinder.cs" />
+    <Compile Include="Assets\Scripts\AudioScripts\InputForAudioManager.cs" />
     <Compile Include="Assets\Scripts\PowerUpsManager\ScriptableObjects\BaseScripts\PowerUpBase.cs" />
     <Compile Include="Assets\Scripts\RaceManagingComponents\LeaderBoardManagement.cs" />
     <Compile Include="Assets\Scripts\PowerUpsManager\ScriptableObjects\ThrotleIncrementPowerUp.cs" />
@@ -114,6 +118,7 @@
     <Compile Include="Assets\Scripts\UIImplementationManager\ManageUI.cs" />
     <Compile Include="Assets\Scripts\RaceManagingComponents\IDeactivateCarManager.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\IManageUI.cs" />
+    <Compile Include="Assets\Scripts\RaceManagingComponents\IActivateAIAudio.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\AIShortestPathFinder\IAIShortestPathFinder.cs" />
     <Compile Include="Assets\Scripts\UIImplementationManager\CollisionForUIHandler\ICollisionHandler.cs" />
     <Compile Include="Assets\Scripts\FinishedRaceMenuUI\ICanvasSwitchManager.cs" />
@@ -149,6 +154,7 @@
     <Compile Include="Assets\Scripts\GridInitializer\GridInitialization.cs" />
     <Compile Include="Assets\Scripts\AIMoveManager\AIInputManager\AIGoingBackwardsManager.cs" />
     <Compile Include="Assets\Scripts\ButtonScripts\ButtonBehaviourScripts.cs" />
+    <Compile Include="Assets\Scripts\RaceManagingComponents\ActivateAIAudio.cs" />
     <Compile Include="Assets\Scripts\ClampManagerScripts\ClampingDeterminationManager.cs" />
     <Compile Include="Assets\Scripts\AIShortestPathFinderManager\WalkableCellFinder\IWalklableCellsFinder.cs" />
     <Compile Include="Assets\Scripts\MovementManager\IObjectMover.cs" />

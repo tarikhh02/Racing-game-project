@@ -16,5 +16,7 @@ namespace Assets.Scripts.SpeedManager
         public void AddToThrotle(float value);
         public void AddToBreakingForce(float value);
         public bool GetIsBreaking();
+        public bool GetHasAchievedMaximumSpeed();
+        public bool GetIsLoweringSpeed();
     }
 }
