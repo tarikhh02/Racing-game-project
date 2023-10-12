@@ -46,6 +46,7 @@ public class AudioManagement : MonoBehaviour
         _audioSource.Stop();
         _audioSource.clip = clip;
         _audioSource.loop = isLooping;
+        _audioSource.volume = 0.3f;
         _audioSource.Play();
     }
 }

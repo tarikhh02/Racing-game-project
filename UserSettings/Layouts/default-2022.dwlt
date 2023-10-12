@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 697
     height: 695
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 122
+  controlID: 134
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -120,8 +120,8 @@ MonoBehaviour:
     y: 0
     width: 345
     height: 1067
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -146,8 +146,8 @@ MonoBehaviour:
     y: 0
     width: 306
     height: 695
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -618,7 +618,7 @@ MonoBehaviour:
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: UnityEditor.SceneViewCameraOverlay
-      index: 8
+      index: 7
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
@@ -633,9 +633,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 660.9282, y: -689.63983, z: 14.584577}
+    m_Target: {x: 1059.8286, y: -293.88736, z: 192.67502}
     speed: 2
-    m_Value: {x: 660.9282, y: -689.63983, z: 14.584577}
+    m_Value: {x: 1059.8286, y: -293.88736, z: 192.67502}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -681,20 +681,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.28282577, y: -0.65750515, z: 0.29356658, w: -0.63447905}
+    m_Target: {x: -0.10555725, y: -0.6451251, z: 0.09008068, w: -0.752132}
     speed: 2
-    m_Value: {x: -0.28267762, y: -0.65716076, z: 0.29341283, w: -0.63414675}
+    m_Value: {x: -0.10549682, y: -0.6447558, z: 0.09002911, w: -0.7517014}
   m_Size:
-    m_Target: 464.90897
+    m_Target: 538.9325
     speed: 2
-    m_Value: 464.90897
+    m_Value: 538.9325
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1.1243999
-    m_SpeedNormalized: 0.55999994
+    m_Speed: 0.5473
+    m_SpeedNormalized: 0.26999998
     m_SpeedMin: 0.01
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -794,7 +794,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/RaceManagingComponents
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -802,16 +802,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/RaceManagingComponents
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\PC1\Desktop\Race-game-project-sourcetree
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 117}
-    m_SelectedIDs: a8534700
-    m_LastClickedID: 4674472
-    m_ExpandedIDs: 00000000aae201007a720c0000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 00e30100
+    m_LastClickedID: 123648
+    m_ExpandedIDs: 00000000e2e2010004e301000ee3010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -839,7 +839,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000aae20100
+    m_ExpandedIDs: 00000000e2e20100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -936,7 +936,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 486
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

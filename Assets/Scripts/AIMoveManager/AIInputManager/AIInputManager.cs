@@ -55,6 +55,7 @@ namespace Racing_game_project.AIInputManager
             this.transform.position = _startCarPos;
             this.transform.rotation = _startCarRot;
             _direction = Vector3.zero;
+            _carUnwalkableStartPos = null;
             _moveObjectComponent.GetSpeed() = 0;
             _isStuck = false;
             _aiCarMovement.SetIsSecondHalfOfGrid(false);
