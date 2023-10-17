@@ -36,13 +36,13 @@ namespace Racing_game_project.CellMarkerManager
                     List<Collider[]> colliderList = new List<Collider[]>()
                     { 
                         Physics.OverlapBox(frontPositionVector + this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
-                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable").ToArray(),
+                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable" && c.gameObject.tag != "AlternativePathDirectioning").ToArray(),
                         Physics.OverlapBox(frontPositionVector - this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
-                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable").ToArray(),
+                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable" && c.gameObject.tag != "AlternativePathDirectioning").ToArray(),
                         Physics.OverlapBox(backPositionVector + this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
-                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable").ToArray(),
+                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable" && c.gameObject.tag != "AlternativePathDirectioning").ToArray(),
                         Physics.OverlapBox(backPositionVector - this.transform.right * grid[y][x].GetGameObject().transform.localScale.x / 2, new Vector3(0.001f, 0.3f, 0.001f))
-                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable").ToArray()
+                        .Where(c => c.gameObject.tag != "GridCell" && c.gameObject.tag != "Unwalkable" && c.gameObject.tag != "AlternativePathDirectioning").ToArray()
                     };  
                     foreach (Collider[] colliders in colliderList)
                     {

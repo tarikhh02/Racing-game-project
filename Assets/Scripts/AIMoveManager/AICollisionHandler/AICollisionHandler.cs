@@ -47,11 +47,8 @@ namespace Racing_game_project.AICollisionHandler
             }
             else if (other.gameObject.tag == "AlternativePathDirectioning")
             {
-                if (_objectMover.GetSpeed() <= (_objectMover.GetMaxMovementSpeed() - _objectMover.GetMaxMovementSpeed() / 4))
-                {
-                    _aiInputManagerComponent.SetArrived(true);
-                    _aiInputManagerComponent.SetDirection(new Vector3(0, 0, -1));
-                }
+                _aiInputManagerComponent.SetArrived(true);
+                _aiInputManagerComponent.SetDirection(new Vector3(0, 0, -1));
             }
             else if (other.gameObject.tag == "SecondStart")
             {
